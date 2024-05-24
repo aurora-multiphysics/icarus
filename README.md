@@ -1,2 +1,2 @@
 # icarus
-Generative adversarial networks (GANs) for simulation validation.
+Machine learning for fusion simulation validation.
