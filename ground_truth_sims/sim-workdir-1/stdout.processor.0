@@ -1,0 +1,360 @@
+Framework Information:
+MOOSE Version:           git commit d03f861fe8 on 2024-06-07
+LibMesh Version:         1c5369aa05eaae8ebeb7930845fce3b1d59cbb37
+PETSc Version:           3.20.3
+SLEPc Version:           3.20.1
+Current Time:            Tue Jun 18 15:27:57 2024
+Executable Timestamp:    Fri Jun  7 21:36:45 2024
+
+Parallelism:
+  Num Processors:          1
+  Num Threads:             3
+
+Mesh: 
+  Parallel Type:           replicated
+  Mesh Dimension:          2
+  Spatial Dimension:       2
+  Nodes:                   121
+  Elems:                   100
+  Num Subdomains:          1
+
+Nonlinear System:
+  Num DOFs:                121
+  Num Local DOFs:          121
+  Variables:               "temperature" 
+  Finite Element Types:    "LAGRANGE" 
+  Approximation Orders:    "FIRST" 
+
+Execution Information:
+  Executioner:             Transient
+  TimeStepper:             ConstantDT
+  TimeIntegrator:          ImplicitEuler
+  Solver Mode:             NEWTON
+  PETSc Preconditioner:    asm 
+  MOOSE Preconditioner:    SMP (auto)
+
+[31mLEGACY MODES ENABLED:[39m
+ This application uses the legacy initial residual evaluation behavior. The legacy behavior performs an often times redundant residual evaluation before the solution modifying objects are executed prior to the initial (0th nonlinear iteration) residual evaluation. The new behavior skips that redundant residual evaluation unless the parameter Executioner/use_pre_smo_residual is set to true. To remove this message and enable the new behavior, set the parameter 'use_legacy_initial_residual_evaluation_behavior' to false in *App.C. Some tests that rely on the side effects of the legacy behavior may fail/diff and should be re-golded.
+[39m
+
+Time Step 0, time = 0
+
+Time Step 1, time = 1, dt = 1
+Pre-SMO residual: 443.826
+ 0 Nonlinear |R| = [32m1.182213e+06[39m
+      0 Linear |R| = [32m1.182213e+06[39m
+      1 Linear |R| = [32m3.136013e-10[39m
+ 1 Nonlinear |R| = [32m3.029757e-09[39m
+[32m Solve Converged![39m
+
+Time Step 2, time = 2, dt = 1
+Pre-SMO residual: 3812.73
+ 0 Nonlinear |R| = [32m3.812735e+03[39m
+      0 Linear |R| = [32m3.812735e+03[39m
+      1 Linear |R| = [32m9.690872e-13[39m
+ 1 Nonlinear |R| = [32m3.792146e-09[39m
+[32m Solve Converged![39m
+
+Time Step 3, time = 3, dt = 1
+Pre-SMO residual: 3806.41
+ 0 Nonlinear |R| = [32m3.806414e+03[39m
+      0 Linear |R| = [32m3.806414e+03[39m
+      1 Linear |R| = [32m1.410679e-12[39m
+ 1 Nonlinear |R| = [32m2.896898e-09[39m
+[32m Solve Converged![39m
+
+Time Step 4, time = 4, dt = 1
+Pre-SMO residual: 3800.11
+ 0 Nonlinear |R| = [32m3.800111e+03[39m
+      0 Linear |R| = [32m3.800111e+03[39m
+      1 Linear |R| = [32m5.294272e-13[39m
+ 1 Nonlinear |R| = [32m4.105088e-09[39m
+[32m Solve Converged![39m
+
+Time Step 5, time = 5, dt = 1
+Pre-SMO residual: 3793.83
+ 0 Nonlinear |R| = [32m3.793826e+03[39m
+      0 Linear |R| = [32m3.793826e+03[39m
+      1 Linear |R| = [32m1.948574e-12[39m
+ 1 Nonlinear |R| = [32m3.166006e-09[39m
+[32m Solve Converged![39m
+
+Time Step 6, time = 6, dt = 1
+Pre-SMO residual: 3787.56
+ 0 Nonlinear |R| = [32m3.787558e+03[39m
+      0 Linear |R| = [32m3.787558e+03[39m
+      1 Linear |R| = [32m1.091473e-12[39m
+ 1 Nonlinear |R| = [32m3.337699e-09[39m
+[32m Solve Converged![39m
+
+Time Step 7, time = 7, dt = 1
+Pre-SMO residual: 3781.31
+ 0 Nonlinear |R| = [32m3.781307e+03[39m
+      0 Linear |R| = [32m3.781307e+03[39m
+      1 Linear |R| = [32m1.315165e-12[39m
+ 1 Nonlinear |R| = [32m3.106194e-09[39m
+[32m Solve Converged![39m
+
+Time Step 8, time = 8, dt = 1
+Pre-SMO residual: 3775.07
+ 0 Nonlinear |R| = [32m3.775074e+03[39m
+      0 Linear |R| = [32m3.775074e+03[39m
+      1 Linear |R| = [32m1.740361e-12[39m
+ 1 Nonlinear |R| = [32m2.785492e-09[39m
+[32m Solve Converged![39m
+
+Time Step 9, time = 9, dt = 1
+Pre-SMO residual: 3768.86
+ 0 Nonlinear |R| = [32m3.768858e+03[39m
+      0 Linear |R| = [32m3.768858e+03[39m
+      1 Linear |R| = [32m7.637000e-13[39m
+ 1 Nonlinear |R| = [32m2.439882e-09[39m
+[32m Solve Converged![39m
+
+Time Step 10, time = 10, dt = 1
+Pre-SMO residual: 3762.66
+ 0 Nonlinear |R| = [32m3.762660e+03[39m
+      0 Linear |R| = [32m3.762660e+03[39m
+      1 Linear |R| = [32m1.001675e-12[39m
+ 1 Nonlinear |R| = [32m4.093993e-09[39m
+[32m Solve Converged![39m
+
+Time Step 11, time = 11, dt = 1
+Pre-SMO residual: 3756.48
+ 0 Nonlinear |R| = [32m3.756478e+03[39m
+      0 Linear |R| = [32m3.756478e+03[39m
+      1 Linear |R| = [32m1.566804e-12[39m
+ 1 Nonlinear |R| = [32m3.639154e-09[39m
+[32m Solve Converged![39m
+
+Time Step 12, time = 12, dt = 1
+Pre-SMO residual: 3750.31
+ 0 Nonlinear |R| = [32m3.750314e+03[39m
+      0 Linear |R| = [32m3.750314e+03[39m
+      1 Linear |R| = [32m3.573320e-12[39m
+ 1 Nonlinear |R| = [32m3.742805e-09[39m
+[32m Solve Converged![39m
+
+Time Step 13, time = 13, dt = 1
+Pre-SMO residual: 3744.17
+ 0 Nonlinear |R| = [32m3.744167e+03[39m
+      0 Linear |R| = [32m3.744167e+03[39m
+      1 Linear |R| = [32m1.328250e-12[39m
+ 1 Nonlinear |R| = [32m2.946541e-09[39m
+[32m Solve Converged![39m
+
+Time Step 14, time = 14, dt = 1
+Pre-SMO residual: 3738.04
+ 0 Nonlinear |R| = [32m3.738037e+03[39m
+      0 Linear |R| = [32m3.738037e+03[39m
+      1 Linear |R| = [32m1.799921e-12[39m
+ 1 Nonlinear |R| = [32m2.695946e-09[39m
+[32m Solve Converged![39m
+
+Time Step 15, time = 15, dt = 1
+Pre-SMO residual: 3731.92
+ 0 Nonlinear |R| = [32m3.731924e+03[39m
+      0 Linear |R| = [32m3.731924e+03[39m
+      1 Linear |R| = [32m3.685075e-12[39m
+ 1 Nonlinear |R| = [32m3.100107e-09[39m
+[32m Solve Converged![39m
+
+Time Step 16, time = 16, dt = 1
+Pre-SMO residual: 3725.83
+ 0 Nonlinear |R| = [32m3.725827e+03[39m
+      0 Linear |R| = [32m3.725827e+03[39m
+      1 Linear |R| = [32m6.580234e-13[39m
+ 1 Nonlinear |R| = [32m3.545998e-09[39m
+[32m Solve Converged![39m
+
+Time Step 17, time = 17, dt = 1
+Pre-SMO residual: 3719.75
+ 0 Nonlinear |R| = [32m3.719748e+03[39m
+      0 Linear |R| = [32m3.719748e+03[39m
+      1 Linear |R| = [32m3.956638e-12[39m
+ 1 Nonlinear |R| = [32m4.230904e-09[39m
+[32m Solve Converged![39m
+
+Time Step 18, time = 18, dt = 1
+Pre-SMO residual: 3713.69
+ 0 Nonlinear |R| = [32m3.713685e+03[39m
+      0 Linear |R| = [32m3.713685e+03[39m
+      1 Linear |R| = [32m2.749184e-12[39m
+ 1 Nonlinear |R| = [32m2.236161e-09[39m
+[32m Solve Converged![39m
+
+Time Step 19, time = 19, dt = 1
+Pre-SMO residual: 3707.64
+ 0 Nonlinear |R| = [32m3.707640e+03[39m
+      0 Linear |R| = [32m3.707640e+03[39m
+      1 Linear |R| = [32m7.566376e-13[39m
+ 1 Nonlinear |R| = [32m3.819216e-09[39m
+[32m Solve Converged![39m
+
+Time Step 20, time = 20, dt = 1
+Pre-SMO residual: 3701.61
+ 0 Nonlinear |R| = [32m3.701611e+03[39m
+      0 Linear |R| = [32m3.701611e+03[39m
+      1 Linear |R| = [32m2.603207e-12[39m
+ 1 Nonlinear |R| = [32m2.862005e-09[39m
+[32m Solve Converged![39m
+
+Time Step 21, time = 21, dt = 1
+Pre-SMO residual: 3695.6
+ 0 Nonlinear |R| = [32m3.695598e+03[39m
+      0 Linear |R| = [32m3.695598e+03[39m
+      1 Linear |R| = [32m2.944295e-12[39m
+ 1 Nonlinear |R| = [32m4.556062e-09[39m
+[32m Solve Converged![39m
+
+Time Step 22, time = 22, dt = 1
+Pre-SMO residual: 3689.6
+ 0 Nonlinear |R| = [32m3.689602e+03[39m
+      0 Linear |R| = [32m3.689602e+03[39m
+      1 Linear |R| = [32m9.904549e-13[39m
+ 1 Nonlinear |R| = [32m3.236422e-09[39m
+[32m Solve Converged![39m
+
+Time Step 23, time = 23, dt = 1
+Pre-SMO residual: 3683.62
+ 0 Nonlinear |R| = [32m3.683623e+03[39m
+      0 Linear |R| = [32m3.683623e+03[39m
+      1 Linear |R| = [32m2.033945e-12[39m
+ 1 Nonlinear |R| = [32m2.552674e-09[39m
+[32m Solve Converged![39m
+
+Time Step 24, time = 24, dt = 1
+Pre-SMO residual: 3677.66
+ 0 Nonlinear |R| = [32m3.677660e+03[39m
+      0 Linear |R| = [32m3.677660e+03[39m
+      1 Linear |R| = [32m8.904701e-13[39m
+ 1 Nonlinear |R| = [32m3.828090e-09[39m
+[32m Solve Converged![39m
+
+Time Step 25, time = 25, dt = 1
+Pre-SMO residual: 3671.71
+ 0 Nonlinear |R| = [32m3.671714e+03[39m
+      0 Linear |R| = [32m3.671714e+03[39m
+      1 Linear |R| = [32m8.857718e-13[39m
+ 1 Nonlinear |R| = [32m2.146813e-09[39m
+[32m Solve Converged![39m
+
+Time Step 26, time = 26, dt = 1
+Pre-SMO residual: 3665.78
+ 0 Nonlinear |R| = [32m3.665784e+03[39m
+      0 Linear |R| = [32m3.665784e+03[39m
+      1 Linear |R| = [32m7.886685e-13[39m
+ 1 Nonlinear |R| = [32m3.401656e-09[39m
+[32m Solve Converged![39m
+
+Time Step 27, time = 27, dt = 1
+Pre-SMO residual: 3659.87
+ 0 Nonlinear |R| = [32m3.659870e+03[39m
+      0 Linear |R| = [32m3.659870e+03[39m
+      1 Linear |R| = [32m8.828846e-13[39m
+ 1 Nonlinear |R| = [32m3.380838e-09[39m
+[32m Solve Converged![39m
+
+Time Step 28, time = 28, dt = 1
+Pre-SMO residual: 3653.97
+ 0 Nonlinear |R| = [32m3.653973e+03[39m
+      0 Linear |R| = [32m3.653973e+03[39m
+      1 Linear |R| = [32m1.416772e-12[39m
+ 1 Nonlinear |R| = [32m2.408752e-09[39m
+[32m Solve Converged![39m
+
+Time Step 29, time = 29, dt = 1
+Pre-SMO residual: 3648.09
+ 0 Nonlinear |R| = [32m3.648092e+03[39m
+      0 Linear |R| = [32m3.648092e+03[39m
+      1 Linear |R| = [32m8.902259e-13[39m
+ 1 Nonlinear |R| = [32m2.911101e-09[39m
+[32m Solve Converged![39m
+
+Time Step 30, time = 30, dt = 1
+Pre-SMO residual: 3642.23
+ 0 Nonlinear |R| = [32m3.642227e+03[39m
+      0 Linear |R| = [32m3.642227e+03[39m
+      1 Linear |R| = [32m8.328495e-13[39m
+ 1 Nonlinear |R| = [32m2.396580e-09[39m
+[32m Solve Converged![39m
+
+Time Step 31, time = 31, dt = 1
+Pre-SMO residual: 3636.38
+ 0 Nonlinear |R| = [32m3.636378e+03[39m
+      0 Linear |R| = [32m3.636378e+03[39m
+      1 Linear |R| = [32m3.806025e-12[39m
+ 1 Nonlinear |R| = [32m4.151261e-09[39m
+[32m Solve Converged![39m
+
+Time Step 32, time = 32, dt = 1
+Pre-SMO residual: 3630.55
+ 0 Nonlinear |R| = [32m3.630545e+03[39m
+      0 Linear |R| = [32m3.630545e+03[39m
+      1 Linear |R| = [32m1.264689e-12[39m
+ 1 Nonlinear |R| = [32m4.482332e-09[39m
+[32m Solve Converged![39m
+
+Time Step 33, time = 33, dt = 1
+Pre-SMO residual: 3624.73
+ 0 Nonlinear |R| = [32m3.624729e+03[39m
+      0 Linear |R| = [32m3.624729e+03[39m
+      1 Linear |R| = [32m1.069329e-12[39m
+ 1 Nonlinear |R| = [32m2.438115e-09[39m
+[32m Solve Converged![39m
+
+Time Step 34, time = 34, dt = 1
+Pre-SMO residual: 3618.93
+ 0 Nonlinear |R| = [32m3.618928e+03[39m
+      0 Linear |R| = [32m3.618928e+03[39m
+      1 Linear |R| = [32m7.856658e-13[39m
+ 1 Nonlinear |R| = [32m2.412116e-09[39m
+[32m Solve Converged![39m
+
+Time Step 35, time = 35, dt = 1
+Pre-SMO residual: 3613.14
+ 0 Nonlinear |R| = [32m3.613143e+03[39m
+      0 Linear |R| = [32m3.613143e+03[39m
+      1 Linear |R| = [32m1.019799e-12[39m
+ 1 Nonlinear |R| = [32m2.999178e-09[39m
+[32m Solve Converged![39m
+
+Time Step 36, time = 36, dt = 1
+Pre-SMO residual: 3607.37
+ 0 Nonlinear |R| = [32m3.607374e+03[39m
+      0 Linear |R| = [32m3.607374e+03[39m
+      1 Linear |R| = [32m2.046173e-12[39m
+ 1 Nonlinear |R| = [32m2.847769e-09[39m
+[32m Solve Converged![39m
+
+Time Step 37, time = 37, dt = 1
+Pre-SMO residual: 3601.62
+ 0 Nonlinear |R| = [32m3.601621e+03[39m
+      0 Linear |R| = [32m3.601621e+03[39m
+      1 Linear |R| = [32m6.083647e-12[39m
+ 1 Nonlinear |R| = [32m3.486858e-09[39m
+[32m Solve Converged![39m
+
+Time Step 38, time = 38, dt = 1
+Pre-SMO residual: 3595.88
+ 0 Nonlinear |R| = [32m3.595884e+03[39m
+      0 Linear |R| = [32m3.595884e+03[39m
+      1 Linear |R| = [32m1.765440e-12[39m
+ 1 Nonlinear |R| = [32m2.734696e-09[39m
+[32m Solve Converged![39m
+
+Time Step 39, time = 39, dt = 1
+Pre-SMO residual: 3590.16
+ 0 Nonlinear |R| = [32m3.590162e+03[39m
+      0 Linear |R| = [32m3.590162e+03[39m
+      1 Linear |R| = [32m1.438559e-12[39m
+ 1 Nonlinear |R| = [32m3.417556e-09[39m
+[32m Solve Converged![39m
+
+Time Step 40, time = 40, dt = 1
+Pre-SMO residual: 3584.46
+ 0 Nonlinear |R| = [32m3.584456e+03[39m
+      0 Linear |R| = [32m3.584456e+03[39m
+      1 Linear |R| = [32m2.362883e-12[39m
+ 1 Nonlinear |R| = [32m3.441345e-09[39m
+[32m Solve Converged![39m
