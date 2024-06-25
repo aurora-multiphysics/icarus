@@ -5,19 +5,14 @@ import json
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-def preprocess_data(base_dir, output_file, ground_truth_dir, test_size=0.2, random_state=42):
+def preprocess_data(base_dir, output_file, test_size=0.2, random_state=42,):
     dataset_dir = base_dir / 'dataset'
     working_dirs = [dir for dir in dataset_dir.iterdir() if dir.is_dir()]
     temperature_data = []
     y_data = []
-    ground_truth_data = []
     exodus_files_all= []
     sweep_vars_all = []
-    ground_truth_sims = sorted(list(ground_truth_dir.glob('*.e')))
 
-    for ground_truth_sim in ground_truth_sims:
-        ground_truth_tensor = create_tensor(ground_truth_sim)
-        ground_truth_data.append(ground_truth_tensor)
 
     for working_dir in working_dirs:
         exodus_files = sorted(list(working_dir.glob('*.e')))
@@ -40,13 +35,14 @@ def preprocess_data(base_dir, output_file, ground_truth_dir, test_size=0.2, rand
     temperature_data = np.stack(temperature_data)
     y_data = np.array(y_data)
 
+
     # Split the data into train and test sets
     temperature_train, temperature_test, y_train, y_test = train_test_split(
-        temperature_data, y_data, test_size=test_size, random_state=random_state
+        temperature_data, y_data, test_size=test_size, random_state=random_state, shuffle=False
     )
 
     np.savez(output_file, temperature_train=temperature_train, temperature_test=temperature_test,
-             y_train=y_train, y_test=y_test, ground_truth=ground_truth_data)
+             y_train=y_train, y_test=y_test)
 
 
 def create_tensor(exodus_file):
@@ -55,12 +51,12 @@ def create_tensor(exodus_file):
     read_config.node_vars = np.array([('temperature')])
     sim_data = exodus_reader.get_all_node_vars()
     temperature_tensor = np.array([value for value in sim_data.values()], dtype=np.float64)
-    return temperature_tensor[:,:,-1]
+    return temperature_tensor[:,:,1].T
 
 
 def calculate_y_data(perturbed_data_file):
-    ground_truth_shc = 400.0
-    ground_truth_thermal_c = 10.0
+    ground_truth_shc = 406.0
+    ground_truth_surface_heat_flux = 500e3
     y_data = []
 
     with open(perturbed_data_file, 'r') as file:
@@ -68,28 +64,29 @@ def calculate_y_data(perturbed_data_file):
 
     for data_list in perturbed_data:
         data = data_list[0]  # Access the first (and only) dictionary in each inner list
-        shc_diff = ground_truth_shc - data["specific_heat"]
-        thermal_c_diff = ground_truth_thermal_c - data["thermal_conductivity"]
-        y_data.append([shc_diff, thermal_c_diff])
+        shc_diff = ground_truth_shc - data["cuSpecHeat"]
+        heat_flux_diff = ground_truth_surface_heat_flux - data["surfHeatFlux"]
+        y_data.append([shc_diff, heat_flux_diff])
 
     return y_data
 
 
 BASE_DIR = Path.cwd()
-GROUND_TRUTH_DIR = Path(Path.cwd(), 'ground_truth_sims/sim-workdir-1')
 OUTPUT_FILE = 'thermal_model_data.npz'
 
-preprocess_data(BASE_DIR, OUTPUT_FILE, GROUND_TRUTH_DIR)
+preprocess_data(BASE_DIR, OUTPUT_FILE)
 
 
-# dummy = create_tensor(Path(Path.cwd(), 'thermal_model_out.e'))
+# # dummy = create_tensor(Path(Path.cwd(), 'ground_truth_thermal_sim_out.e'))
+# dummy1 = create_tensor(Path(Path.cwd(), 'dataset/sim-workdir-1/sim-1-1_out.e'))
 
-# print(dummy.shape)
+# # print(dummy)
+# # print()
+# print(dummy1)
 
-# dummy_y = calculate_y_data(Path(BASE_DIR,'dataset/mooseherder_examples_sim-1-1/sim-workdir-1/sweep-vars-1.json'))
+# # dummy_y = calculate_y_data(Path(BASE_DIR,'dataset/sim-workdir-1/sweep-vars-1.json'))
 
-# dummy_y = np.array(dummy_y)
+# # dummy_y = np.array(dummy_y)
 
-# print(dummy_y.shape)
-
+# # print(f"dummy y shape: {dummy_y}")
 
