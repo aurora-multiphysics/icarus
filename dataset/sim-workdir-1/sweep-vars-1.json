@@ -1,0 +1,5402 @@
+[
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 507.2462463378906,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 550.6375122070312,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 232.43499755859375,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 304.7537536621094,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 594.0287475585938,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 478.3187561035156,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 246.89874267578125,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 391.5362548828125,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 333.6812438964844,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 449.3912353515625,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 463.8550109863281,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 377.0724792480469,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 261.3625183105469,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 174.5800018310547,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 536.1737670898438,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 319.2174987792969,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 608.4924926757812,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 217.97125244140625,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 434.927490234375,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 579.5650024414062,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 565.1012573242188,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 492.7825012207031,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 290.2900085449219,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 406.0,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 203.50750732421875,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 348.14501953125,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 362.6087341308594,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 622.9562377929688,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 521.7099609375,
+            "surfHeatFlux": 446562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 393125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 428750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 286250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 500000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 464375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 215000.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 642500.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 606875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 624687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 589062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 553437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 321875.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 678125.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 767187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 749375.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 304062.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 482187.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 357500.03125
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 250625.015625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 695937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 375312.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 410937.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 268437.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 571250.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 660312.5625
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 731562.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 339687.5
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 535625.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 713750.0
+        }
+    ],
+    [
+        {
+            "cuSpecHeat": 275.82623291015625,
+            "surfHeatFlux": 446562.5
+        }
+    ]
+]
