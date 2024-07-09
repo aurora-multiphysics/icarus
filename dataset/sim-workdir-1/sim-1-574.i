@@ -26,7 +26,7 @@ surfHeatFlux = 500000.0 # W.m^-2
 # Material Properties: Pure (OFHC) Copper at 250degC
 cuDensity = 8829 # kg.m^-3
 cuThermCond = 384 # W.m^-1.K^-1
-cuSpecHeat = 579.5650024414062 # J.kg^-1.K^-1
+cuSpecHeat = 406 # J.kg^-1.K^-1
 
 #** MOOSEHERDER VARIABLES - END
 #-------------------------------------------------------------------------

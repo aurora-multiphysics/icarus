@@ -21,12 +21,12 @@ eType = QUAD4 # QUAD4 for 1st order, QUAD8 for 2nd order
 # Thermal Loads/BCs
 coolantTemp = 20 # degC
 heatTransCoeff = 125000 # W.m^-2.K^-1
-surfHeatFlux = 713750.0 # W.m^-2
+surfHeatFlux = 500000.0 # W.m^-2
 
 # Material Properties: Pure (OFHC) Copper at 250degC
 cuDensity = 8829 # kg.m^-3
 cuThermCond = 384 # W.m^-1.K^-1
-cuSpecHeat = 174.5800018310547 # J.kg^-1.K^-1
+cuSpecHeat = 406 # J.kg^-1.K^-1
 
 #** MOOSEHERDER VARIABLES - END
 #-------------------------------------------------------------------------
