@@ -4,46 +4,10 @@ from mooseherder import ExodusReader
 import json
 import numpy as np
 from sklearn.model_selection import train_test_split
-
-def preprocess_data(base_dir, output_file, test_size=0.2, random_state=42,):
-    dataset_dir = base_dir / 'dataset'
-    working_dirs = [dir for dir in dataset_dir.iterdir() if dir.is_dir()]
-    temperature_data = []
-    y_data = []
-    exodus_files_all= []
-    sweep_vars_all = []
-
-
-    for working_dir in working_dirs:
-        exodus_files = sorted(list(working_dir.glob('*.e')))
-        sweep_vars_files = sorted(list(working_dir.glob('sweep-vars-*.json')))
-        exodus_files_all.append(exodus_files)
-        sweep_vars_all.append(sweep_vars_files)
-
-        if not sweep_vars_files:
-            print(f"Warning: No sweep-vars-*.json files found in {working_dir}")
-            continue
-        
-   
-        for exodus_file in exodus_files:
-            temperature_tensor = create_tensor(exodus_file)
-            temperature_data.append(temperature_tensor)
-
-        for sweep_vars_file in sweep_vars_files:
-            y_data.extend(calculate_y_data(sweep_vars_file))
-
-    temperature_data = np.stack(temperature_data)
-    y_data = np.array(y_data)
-
-
-    # Split the data into train and test sets
-    temperature_train, temperature_test, y_train, y_test = train_test_split(
-        temperature_data, y_data, test_size=test_size, random_state=random_state, shuffle=False
-    )
-
-    np.savez(output_file, temperature_train=temperature_train, temperature_test=temperature_test,
-             y_train=y_train, y_test=y_test)
-
+import matplotlib.pyplot as plt
+from scipy.interpolate import RegularGridInterpolator
+import os
+import re
 
 def create_tensor(exodus_file):
     exodus_reader = ExodusReader(exodus_file)
@@ -53,9 +17,106 @@ def create_tensor(exodus_file):
     temperature_tensor = np.array([value for value in sim_data.values()], dtype=np.float64)
     return temperature_tensor[:,:,1].T
 
+BASE_DIR = Path.cwd()
+OUTPUT_FILE = 'thermal_model_data.npz'
+GROUND_TRUTH_TENSOR = create_tensor(Path(BASE_DIR, 'ground_truth_thermal_sim_out.e'))
+
+
+
+
+def extract_number(filename):
+    # Extract the number after the last dash and before _out.e
+    match = re.search(r'sim-1-(\d+)_out\.e$', filename)
+    if match:
+        return int(match.group(1))
+    return 0  # Return 0 if no match found
+
+def preprocess_data(base_dir, output_file, test_size=0.2, random_state=42,):
+    dataset_dir = Path(Path.cwd(), 'dataset/')
+    working_dirs = [dir for dir in dataset_dir.iterdir() if dir.is_dir()]
+    temperature_data = []
+    y_data = []
+    
+    for working_dir in working_dirs:
+        exodus_files = sorted(list(working_dir.glob('*.e')))
+        sweep_vars_files= sorted(list(working_dir.glob('sweep-vars-*.json')))
+
+    exodus_files_sorted = sorted(exodus_files, key=lambda x: extract_number(os.path.basename(x)))
+
+
+   
+    
+    for exodus_file in exodus_files_sorted:
+                temperature_tensor = create_tensor(exodus_file)
+                temperature_data.append(GROUND_TRUTH_TENSOR - temperature_tensor)
+
+    for sweep_vars_file in sweep_vars_files:
+        y_data.extend(calculate_y_data(sweep_vars_file))
+
+    temperature_data = np.array(temperature_data)
+    y_data = np.array(y_data)
+
+
+    # Split the data into train and test sets
+    temperature_train, temperature_test, y_train, y_test = train_test_split(
+        temperature_data, y_data, test_size=test_size, random_state=random_state, shuffle=False
+    )
+
+
+    np.savez(output_file, temperature_train=temperature_train, temperature_test=temperature_test,
+             y_train=y_train, y_test=y_test, ground_truth=GROUND_TRUTH_TENSOR)
+
+# def create_tensor(exodus_file_path, scale_factor=1):
+#     reader = ExodusReader(exodus_file_path)
+#     coords, _ = reader.get_coords()
+#     coords_2d = coords[:, :2]
+
+#     temp_data = reader.get_node_vars(np.array(['temperature']))
+#     if temp_data is None or 'temperature' not in temp_data:
+#         raise ValueError("Temperature data not found in the exodus file")
+
+#     temp_values = temp_data['temperature'][:, -1]
+
+#     coord_temp_dict = {tuple(coord): temp for coord, temp in zip(coords_2d, temp_values)}
+
+#     x = sorted(set(coord[0] for coord in coord_temp_dict.keys()))
+#     y = sorted(set(coord[1] for coord in coord_temp_dict.keys()))
+
+#     temp_grid = np.zeros((len(y), len(x)))
+#     for (x_coord, y_coord), temp in coord_temp_dict.items():
+#         i = y.index(y_coord)
+#         j = x.index(x_coord)
+#         temp_grid[i, j] = temp
+
+#     # Create interpolation function
+#     interp_func = RegularGridInterpolator((y, x), temp_grid)
+
+#     # Create new coordinate arrays with higher resolution
+#     x_new = np.linspace(min(x), max(x), len(x) * scale_factor)
+#     y_new = np.linspace(min(y), max(y), len(y) * scale_factor)
+
+#     # Create a meshgrid of new coordinates
+#     xx_new, yy_new = np.meshgrid(x_new, y_new)
+#     points_new = np.column_stack([yy_new.ravel(), xx_new.ravel()])
+
+#     # Interpolate data
+#     interpolated_data = interp_func(points_new).reshape(len(y_new), len(x_new))
+
+#     return interpolated_data
+
+
+def show_field(interpolated_data):
+    plt.figure(figsize=(12, 5))
+    plt.subplot(122)
+    plt.imshow(interpolated_data, cmap='coolwarm', aspect='auto')
+    plt.title("Interpolated Data")
+    plt.colorbar()
+
+    plt.tight_layout()
+    plt.show()
 
 def calculate_y_data(perturbed_data_file):
-    ground_truth_shc = 406.0
+    ground_truth_thermal_c = 384.0
     ground_truth_surface_heat_flux = 500e3
     y_data = []
 
@@ -64,29 +125,25 @@ def calculate_y_data(perturbed_data_file):
 
     for data_list in perturbed_data:
         data = data_list[0]  # Access the first (and only) dictionary in each inner list
-        shc_diff = ground_truth_shc - data["cuSpecHeat"]
+        thermal_c_diff = ground_truth_thermal_c - data["cuThermCond"]
         heat_flux_diff = ground_truth_surface_heat_flux - data["surfHeatFlux"]
-        y_data.append([shc_diff, heat_flux_diff])
+        
+        # Convert to binary (0 or 1)
+        thermal_c_changed = 1 if thermal_c_diff != 0 else 0
+        flux_changed = 1 if heat_flux_diff != 0 else 0
+        
+        # Create class labels
+        if thermal_c_changed == 1 and flux_changed == 1:
+            y_data.append(3)  # both_changed
+        elif thermal_c_changed == 1 and flux_changed == 0:
+            y_data.append(2)  # only_thermal_c_changed
+        elif thermal_c_changed == 0 and flux_changed == 1:
+            y_data.append(1)  # only_flux_changed
+        else:
+            y_data.append(0)  # both_unchanged
 
     return y_data
 
 
-BASE_DIR = Path.cwd()
-OUTPUT_FILE = 'thermal_model_data.npz'
-
 preprocess_data(BASE_DIR, OUTPUT_FILE)
-
-
-# # dummy = create_tensor(Path(Path.cwd(), 'ground_truth_thermal_sim_out.e'))
-# dummy1 = create_tensor(Path(Path.cwd(), 'dataset/sim-workdir-1/sim-1-1_out.e'))
-
-# # print(dummy)
-# # print()
-# print(dummy1)
-
-# # dummy_y = calculate_y_data(Path(BASE_DIR,'dataset/sim-workdir-1/sweep-vars-1.json'))
-
-# # dummy_y = np.array(dummy_y)
-
-# # print(f"dummy y shape: {dummy_y}")
 
