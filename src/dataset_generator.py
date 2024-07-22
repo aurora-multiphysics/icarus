@@ -139,7 +139,6 @@ def main():
     dir_manager.create_dirs()
 
     # Create variables to sweep in a list of dictionaries
-    
     moose_vars = list([])
     thermal_cond, surface_heat_flux = dataset.generate_stratified_samples()
     assert len(thermal_cond) == len(surface_heat_flux), "Mismatched lengths in generated samples"
@@ -155,8 +154,6 @@ def main():
     print('EXAMPLE: Run MOOSE in parallel')
     print("-"*80)
 
-    # # Run all variable combinations across 4 MOOSE instances with two runs saved in
-    # # each moose-workdir
     herd.run_para(moose_vars)
 
     print(f'Run time (para) = {herd.get_sweep_time():.3f} seconds')
