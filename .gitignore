@@ -5,6 +5,8 @@ __pycache__/
 pyvale
 dataset/sim-workdir-1/*
 .ipynb_checkpoints/
-
+.test-env
 notebook_dataset_generator.ipynb
 best_model.pth
+*.egg-info/
+dist/
