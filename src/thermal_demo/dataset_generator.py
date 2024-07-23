@@ -1,5 +1,6 @@
 #Mooseherder can generate 125 sims per min 
 from pathlib import Path
+import warnings
 import numpy as np
 import matplotlib.pyplot as plt
 from skopt.space import Space
@@ -9,6 +10,10 @@ from mooseherder import (MooseHerd,
                          InputModifier,
                          DirectoryManager,
                          MooseConfig)
+
+
+
+warnings.filterwarnings("ignore", category=UserWarning, module="skopt.sampler.sobol")
 
 N_SAMPLES = 100
 np.random.seed(123)
