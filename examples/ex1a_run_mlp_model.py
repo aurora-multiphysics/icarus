@@ -1,24 +1,31 @@
-# from thermal_demo import SimpleModel, train_model, get_accuracy
-# import torch.optim as optim
-# import torch.nn as nn
-# from thermal_demo import ThermalModelDataset, generate_thermal_data
-
-# # Generate data (if not already generated)
-# generate_thermal_data(n_samples=10000, output_file='thermal_model_data.npz')
-
-# # Load the dataset
-# train_dataset = ThermalModelDataset('thermal_model_data.npz', train=True)
-# test_dataset = ThermalModelDataset('thermal_model_data.npz', train=False)
-
-# # Initialize model and training parameters
-# model = SimpleModel()
-# criterion = nn.CrossEntropyLoss()
-# optimizer = optim.AdamW(model.parameters(), lr=3e-4)
-
-# # Train the model
-# best_model = train_model(model, train_dataset, test_dataset, criterion, optimizer, num_epochs=50)
+from thermal_demo import ThermalModelDataset, IcarusModel
+import torch
+import torch.utils.data.dataloader as data_utils
 
 
+#Hyperparameters
+BATCH_SIZE = 32
+LEARNING_RATE = 3e-4
+INPUT_SIZE = 66
+HIDDEN_SIZE = 512
+OUTPUT_SIZE = 4
+NUM_EPOCHS = 20
+# NUM_RUNS = 1 #best 'run' out of num_runs has model state_dict saved to be used for inference
 
-# test_accuracy = get_accuracy(best_model, test_dataset)
-# print(f"Final Test Accuracy: {test_accuracy:.2f}%")
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+npz_file = 'data/thermal_model_data.npz' #this is an existing thermal_toy dataset to experiment training the model on
+
+
+thermal_dataset_train = ThermalModelDataset(npz_file)
+thermal_dataset_test = ThermalModelDataset(npz_file, train=False)
+
+train_loader = data_utils.DataLoader(dataset=thermal_dataset_train, batch_size=BATCH_SIZE, shuffle=True)
+test_loader = data_utils.DataLoader(dataset=thermal_dataset_test, batch_size=BATCH_SIZE, shuffle=False )
+
+
+model = IcarusModel(INPUT_SIZE, HIDDEN_SIZE, OUTPUT_SIZE, LEARNING_RATE)
+
+best_accuracy = model.fit(train_loader, test_loader, num_epochs=NUM_EPOCHS, debug=True) #prints class probabilties for further insight on model performance. can set to false for less verbose output
+
+test_accuracy = model.evaluate(test_loader)
+
