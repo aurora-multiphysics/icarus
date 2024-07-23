@@ -61,12 +61,17 @@ class ThermalModelDataset(Dataset):
     
     
     def __repr__(self) -> str:
-        intro_string = "Thermal Model Simulation Validation/Verification Dataset:"
-        return f"{intro_string}\n--------\nTraining set contains {len(self.temperature_train)} simulated temperature fields.\ntesting set contains {len(self.temperature_test)} simulated temperature fields.\n------------"
+        return f"""Thermal Model Simulation Validation/Verification Dataset:
+    --------
+    Training set: {len(self.temperature_train)} simulated temperature fields
+    Testing set:  {len(self.temperature_test)} simulated temperature fields
+    Input X data shape:           {self.temperature_train[0].shape}
+    Input Y data shape:           {self.y_train[0].shape}
+    Output classes:        4
+    --------"""
+
     
         
-
-
 
 
 
