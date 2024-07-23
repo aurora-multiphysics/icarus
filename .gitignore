@@ -10,3 +10,4 @@ notebook_dataset_generator.ipynb
 best_model.pth
 *.egg-info/
 dist/
+model_training.log
