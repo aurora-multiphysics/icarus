@@ -3,10 +3,12 @@
 thermal_demo
 """
 
-from .dataset_generator import GeneratePerturbedSamples
-from .dataloader import ThermalModelDataset
+from thermal_demo.dataset_generator import GeneratePerturbedSamples
+from thermal_demo.dataloader import ThermalModelDataset
+from thermal_demo.model import IcarusModel
 
 
 
 __all__ = ["thermalmodeldataset",
-            "generateperturbedsamples",]
+            "generateperturbedsamples",
+            "icarusmodel"]
