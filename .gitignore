@@ -2,9 +2,11 @@
 .vscode/
 __pycache__/
 .pyvale
+.test-env
 pyvale
 dataset/sim-workdir-1/*
 .ipynb_checkpoints/
-
 notebook_dataset_generator.ipynb
 best_model.pth
+*.egg-info/
+dist/
