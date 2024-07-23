@@ -59,7 +59,7 @@ pip3 install torch
 pip3 install torch --index-url https://download.pytorch.org/whl/cu121
 ```
 
-Note: The CUDA version (cu121 in this example) may change. Always check the official [PyTorch](https://pytorch.org/get-started/locally/) website for the most up-to-date installation instructions and CUDA version compatibility.
+*Note: The CUDA version (`cu121` in this example) may change. Always check the official [PyTorch](https://pytorch.org/get-started/locally/) website for the most up-to-date installation instructions and CUDA version compatibility.*
 
 
 #### Verifying Installation:
