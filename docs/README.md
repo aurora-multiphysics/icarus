@@ -1,7 +1,7 @@
 # Icarus
-Machine learning for fusion simulation validation. Named after the Icarus of greek mythology - to reach for the stars, you'll need to risk a little sunburn.
+Machine learning for fusion simulation validation. Named after the Icarus of greek mythology - because to reach for the stars, you risk a little sunburn.
 
-The purpose of this project is to develop a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data. When the experiment does not agree with the simulation the tools should provide the engineer with a probable reason for the mismatch to allow further investigation and diagnosis.
+The purpose of this package is to provide a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data. When the experiment does not agree with the simulation the tools should provide the engineer with a probable reason for the mismatch to allow further investigation and diagnosis.
 
 
 ## Installation
