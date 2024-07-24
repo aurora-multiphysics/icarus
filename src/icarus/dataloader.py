@@ -4,9 +4,19 @@ from torch.utils.data import Dataset
 
 
 class ThermalModelDataset(Dataset):
-    def __init__(self, npz_file, train=True):
+    def __init__(self, data_source, train=True):
         self.train = train
-        self.__dataset_npz = np.load(npz_file, allow_pickle=True)
+
+        if isinstance(data_source, str):
+            # If data_source is a string, treat it as a file path
+            self.__dataset_npz = np.load(data_source, allow_pickle=True)
+        elif isinstance(data_source, dict):
+            # If data_source is a dict, assume it's already loaded data
+            self.__dataset_npz = data_source
+        else:
+            raise ValueError("data_source must be either a file path or a pre-loaded dataset dictionary")
+       
+       
         self.temperature_train = torch.from_numpy(self.__dataset_npz['temperature_train']).to(torch.float64)
         self.temperature_test = torch.from_numpy(self.__dataset_npz['temperature_test']).to(torch.float64)
         self.ground_truth = torch.from_numpy(self.__dataset_npz['ground_truth']).to(torch.float64)
