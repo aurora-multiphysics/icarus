@@ -10,7 +10,7 @@ License: GPL 3.0
 
 from pathlib import Path
 import os
-from thermal_demo import SampleGenerator
+from icarus import SampleGenerator
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          InputModifier,
