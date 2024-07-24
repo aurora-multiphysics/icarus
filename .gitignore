@@ -12,3 +12,4 @@ best_model.pth
 dist/
 model_training.log
 .package-testing
+.testing-env/
