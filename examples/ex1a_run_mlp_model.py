@@ -8,7 +8,7 @@ License: GPL 3.0
 '''
 
 
-from thermal_demo import ThermalModelDataset, IcarusModel
+from icarus import ThermalModelDataset, IcarusModel
 import torch
 import torch.utils.data.dataloader as data_utils
 
