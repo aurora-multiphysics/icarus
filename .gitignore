@@ -11,3 +11,4 @@ best_model.pth
 *.egg-info/
 dist/
 model_training.log
+.package-testing
