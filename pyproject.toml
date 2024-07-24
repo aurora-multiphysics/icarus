@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "icarus-fusion"
-version = "0.1.7"
+version = "0.1.8"
 description = "A machine learning tool for fusion simulation validation."
 authors = [
   { name = "arjavp-ukaea", email = "arjav.poudel@ukaea.uk" },
