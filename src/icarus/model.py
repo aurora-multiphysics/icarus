@@ -65,8 +65,8 @@ class BaseModel(ABC):
 
         return epoch_loss / len(loader)
 
-    def _debug_output(self, loss, y_preds, y_train):
-        logging.debug(f"Batch Loss: {loss:.4f}")
+    def _debug_output(self, batch_index, loss, y_preds, y_train):
+        logging.debug(f"Batch {batch_index} - Loss: {loss:.4f}")
         probabilities = F.softmax(y_preds, dim=1)
         num_samples_to_log = min(5, y_preds.shape[0])
         for j in range(num_samples_to_log):
