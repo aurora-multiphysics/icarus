@@ -23,7 +23,7 @@ NUM_EPOCHS = 20
 # NUM_RUNS = 1 #best 'run' out of num_runs has model state_dict saved to be used for inference
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-npz_file = 'data/thermal_model_data.npz' #this is an existing thermal_toy dataset to experiment training the model on
+npz_file = 'src/icarus/data/thermal_model_data.npz' #this is an existing thermal_toy dataset to experiment training the model on
 
 
 thermal_dataset_train = ThermalModelDataset(npz_file) #training set
