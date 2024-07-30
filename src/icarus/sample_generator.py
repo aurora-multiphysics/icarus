@@ -22,7 +22,7 @@ class SampleGenerator:
     '''generates perturbed parameter samples. using quasirandom (sobol) sampling within stratified samples to ensure dataset balance and 
        and sufficient coverage of the continous sample space, as specified by the perturbation factor,  and the tolerance level, t. both hyperparamterters can be altered by user 
     '''
-    def __init__(self, n_samples=N_SAMPLES, thermal_cond_base=384.0, heat_flux_base=500000.0, p_factor=0.8, tolerance=0.001):
+    def __init__(self, n_samples, thermal_cond_base, heat_flux_base, p_factor=0.7, tolerance=0.001):
         self.n_samples = n_samples
         self.thermal_cond_base = thermal_cond_base
         self.heat_flux_base = heat_flux_base
