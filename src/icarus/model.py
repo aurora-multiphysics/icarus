@@ -8,7 +8,7 @@ import copy
 from abc import ABC
 
 
-logging.basicConfig(filename='model_training.log', level=logging.INFO,
+logging.basicConfig(filename='model_training_and_eval.log', level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -25,55 +25,59 @@ class BaseModel(ABC):
         best_model_wts = copy.deepcopy(self.model.state_dict())
         best_acc = 0.0
         print("Model initialised. Begin training sequence...")
-
+    
         for epoch in tqdm(range(num_epochs), desc="Model Training Progress"):
-            train_loss = self._train_epoch(train_loader, debug)
+            train_loss, softmax_outputs = self._train_epoch(train_loader, debug)
             test_acc = self.evaluate(test_loader)
             
-            logging.info(f"Epoch {epoch+1}/{num_epochs} - Loss: {train_loss:.4f}, Test Accuracy: {test_acc:.2f}%")
-
+            log_message = f"Epoch {epoch+1}/{num_epochs} - Loss: {train_loss:.4f}, Test Accuracy: {test_acc:.2f}%"
+            if debug and softmax_outputs:
+                log_message += f"\nSoftmax outputs: {softmax_outputs}"
+            logging.info(log_message)
+    
             if test_acc > best_acc:
                 best_acc = test_acc
                 best_model_wts = copy.deepcopy(self.model.state_dict())
                 torch.save(best_model_wts, 'best_model.pth')
                 logging.info(f"New best model saved with accuracy: {best_acc:.2f}%")
-
-            
-
+    
         logging.info(f"Model training completed. Best test accuracy: {best_acc:.2f}%")
         print(f"Training and Eval Complete. best_accuracy: {best_acc:.2f}%. Please check model_training.log for additional info.")
         self.model.load_state_dict(best_model_wts)
         return best_acc
-
+    
     def _train_epoch(self, loader, debug=True):
         self.model.train()
         epoch_loss = 0.0
+        softmax_outputs = []
         for i, (X_train, y_train) in enumerate(loader):
             X_train = X_train.to(self.device)
             y_train = y_train.to(self.device).long() 
-
+    
             self.optimizer.zero_grad()
             y_preds = self.model(X_train)
             loss = self.criterion(y_preds, y_train)
             loss.backward()
             self.optimizer.step()
-
+    
             epoch_loss += loss.item()
-
+    
             if i % 10 == 0 and debug:
-                self._debug_output(i, loss, y_preds, y_train)
-
-        return epoch_loss / len(loader)
-
+                softmax_outputs.append(self._debug_output(i, loss, y_preds, y_train))
+    
+        return epoch_loss / len(loader), softmax_outputs
+    
     def _debug_output(self, batch_index, loss, y_preds, y_train):
-        logging.debug(f"Batch {batch_index} - Loss: {loss:.4f}")
         probabilities = F.softmax(y_preds, dim=1)
         num_samples_to_log = min(5, y_preds.shape[0])
+        output = []
         for j in range(num_samples_to_log):
-            logging.debug(f"Sample {j}:")
-            logging.debug(f"Probabilities: {probabilities[j].tolist()}")
-            logging.debug(f"True class: {y_train[j].item()}")
-
+            output.append({
+                'Sample': j,
+                'Probabilities': probabilities[j].tolist(),
+                'True class': y_train[j].item()
+            })
+        return output
     @torch.no_grad()
     def evaluate(self, dataloader):
         self.model.eval()
