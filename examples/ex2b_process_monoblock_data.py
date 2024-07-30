@@ -1,3 +1,14 @@
+'''
+================================================================================
+Example: Generate 3D Monoblock Temperature Field Dataset.
+
+icarus:  Intelligent Compatibility Analyser for Reactor Uncertain Simulations
+License: GPL 3.0
+================================================================================
+'''
+
+
+
 from pathlib import Path
 from icarus import CreateThermalDataset
 
