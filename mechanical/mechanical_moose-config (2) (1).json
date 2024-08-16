@@ -1,0 +1,8 @@
+
+{
+    "main_path": "~/moose",
+    "app_path": "~/proteus",
+    "app_name": "proteus-opt",
+    "input_file": "example_2d_plate.i",
+    "mesh_file": "example_2d_plate.msh"
+}
