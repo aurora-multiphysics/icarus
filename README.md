@@ -1,7 +1,5 @@
 # Icarus
-Machine learning for simulation validation. Named after the Icarus of greek mythology - because to reach for the stars, you risk a little sunburn.
-
-The purpose of this package is to provide a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data.
+Machine learning for simulation validation. Icarus provide a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data.
 
 
 ## Installation
@@ -78,6 +76,8 @@ print(torch.cuda.is_available())  # returns True if CUDA available and properly 
 The examples folder includes a sequence of examples using `icarus` : to generate the dataset and train an ml model from the suite available on the generated data.
 
 #### Moose Config File
+
+here are instructions for hoe to setup the moose config file.
 
 ```python
 from pathlib import Path
