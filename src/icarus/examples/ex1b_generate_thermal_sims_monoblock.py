@@ -1,6 +1,6 @@
 '''
 ================================================================================
-Example: Generate a Perturbed Temperature Field Dataset using MOOSEHERDER and Stratified Sobol Sampling of parameter space.
+Example: Generate Perturbed 3D Monoblock Temperature Field Simulations using MOOSEHERDER and Stratified Sobol Sampling of parameter space.
 
 icarus:  Intelligent Compatibility Analyser for Reactor Uncertain Simulations
 License: GPL 3.0
@@ -10,7 +10,7 @@ License: GPL 3.0
 
 from pathlib import Path
 import os
-from thermal_demo import SampleGenerator
+from icarus import SampleGenerator
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          InputModifier,
@@ -18,7 +18,11 @@ from mooseherder import (MooseHerd,
                          MooseConfig)
 
 
-dataset = SampleGenerator(n_samples=20, p_factor=0.8, tolerance=0.015) 
+THERMAL_COND = 384.0
+HEAT_FLUX = 10.0e6
+
+dataset = SampleGenerator(n_samples=8, p_factor=0.8, tolerance=0.001, thermal_cond_base=THERMAL_COND, heat_flux_base=HEAT_FLUX) 
+
 
 
 def main():
@@ -28,9 +32,9 @@ def main():
     print('EXAMPLE: Herd Setup')
     print("-"*80)
 
-    config_path = Path.cwd() / 'moose-config.json'
+    config_path = Path.cwd() / 'example-moose-config.json'
     moose_config = MooseConfig().read_config(config_path)
-    moose_input = Path(Path.cwd(), 'data/ground_truth_thermal_sim.i')
+    moose_input = Path(Path.cwd(), 'example_monoblock.i')
 
     moose_modifier = InputModifier(moose_input,'#','')
     moose_runner = MooseRunner(moose_config)
@@ -46,7 +50,7 @@ def main():
     # Set the parallelisation options
     herd.set_num_para_sims(n_para=10)
 
-    dataset_dir = Path(Path.cwd() / 'dataset/')
+    dataset_dir = Path(Path.cwd() / 'monoblock_dataset/')
     if not dataset_dir.exists():
         dataset_dir.mkdir(parents=True, exist_ok=True)
     

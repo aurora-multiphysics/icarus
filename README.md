@@ -1,7 +1,5 @@
 # Icarus
-Machine learning for fusion simulation validation. Named after the Icarus of greek mythology - because to reach for the stars, you risk a little sunburn.
-
-The purpose of this package is to provide a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data. When the experiment does not agree with the simulation the tools should provide the engineer with a probable reason for the mismatch to allow further investigation and diagnosis.
+Machine learning for simulation validation. Icarus provide a set of machine learning tools that engineers can use to assess the agreement between an experiment and simulation; that is, to validate the simulation with experimental data.
 
 
 ## Installation
@@ -12,7 +10,7 @@ The purpose of this package is to provide a set of machine learning tools that e
 You can install icarus from PyPi as follows:
 
 ```
-pip install icarus
+pip install icarus-fusion
 ```
 
 ### Developer Installation
@@ -76,6 +74,32 @@ print(torch.cuda.is_available())  # returns True if CUDA available and properly 
 ## Getting Started
 
 The examples folder includes a sequence of examples using `icarus` : to generate the dataset and train an ml model from the suite available on the generated data.
+
+#### Moose Config File
+
+here are instructions for hoe to setup the moose config file.
+
+```python
+from pathlib import Path
+from mooseherder import MooseConfig
+
+
+def main() -> None:
+    """main: create moose config json
+    """
+    config = {'main_path': Path.home()/ 'moose',
+            'app_path': Path.home() / 'proteus',
+            'app_name': 'proteus-opt'}
+
+    moose_config = MooseConfig(config)
+
+    save_path = Path.cwd() / 'example-moose-config.json'
+    moose_config.save_config(save_path)
+
+
+if __name__ == "__main__":
+    main()
+```
 
 ## Contributors
 

@@ -1,5 +1,5 @@
 {
-    "main_path": "/home/arjavp/moose",
-    "app_path": "/home/arjavp/proteus",
+    "main_path": "/path/to/moose",
+    "app_path": "/path/to/proteus",
     "app_name": "proteus-opt"
 }

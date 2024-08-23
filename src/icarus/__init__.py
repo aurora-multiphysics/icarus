@@ -3,12 +3,7 @@
 icarus
 """
 
-from icarus.sample_generator import SampleGenerator
+from icarus.sample_generator import CreateThermalDataset, SimulationParameters
 from icarus.dataloader import ThermalModelDataset
-from icarus.model import IcarusModel
-
-
-
-__all__ = ["thermalmodeldataset",
-            "samplegenerator",
-            "icarusmodel"]
+from icarus.model import IcarusModel, NNParameters
+from icarus.datasets import load_2d_thermal_dataset, load_monoblock_thermal_dataset

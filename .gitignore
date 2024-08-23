@@ -3,7 +3,8 @@
 __pycache__/
 .pyvale
 pyvale
-dataset/sim-workdir-1/*
+examples/2d_thermal_dataset/sim-workdir-1/*
+examples/monoblock_dataset/sim-workdir-1/*
 .ipynb_checkpoints/
 .test-env
 notebook_dataset_generator.ipynb
@@ -12,3 +13,4 @@ best_model.pth
 dist/
 model_training.log
 .package-testing
+.testing-env/
