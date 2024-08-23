@@ -26,7 +26,6 @@ np.random.seed(123)
 
 @dataclass
 class SimulationParameters:
-    """dataclass for specifying simulation parameters"""
 
     n_samples: int = 100
     p_factor: float = 0.8
@@ -36,8 +35,10 @@ class SimulationParameters:
     moose_filename: str = "example_2d_plate.i"
     config_filename: str = "example-moose-config.json"
     n_para: int = 10
+
     n_tasks: int = 1
     n_threads: int = 4
+
     output_file: str = "example_2d_plate_data.npz"
     ground_truth_file: str = "example_2d_plate_out.e"
     dataset_dir: Path = Path(Path.cwd(), "2d_thermal_dataset/")
@@ -52,6 +53,13 @@ class CreateThermalDataset:
     """
 
     def __init__(self, params: SimulationParameters):
+        """_summary_
+
+        Parameters
+        ----------
+        params : SimulationParameters
+            _description_
+        """
         self.params = params
         self.thermal_c_samples, self.heat_flux_samples = (
             self._generate_stratified_samples()
@@ -111,6 +119,26 @@ class CreateThermalDataset:
         return thermal_cond_vals, heat_flux_vals
 
     def _sobol_samples(self, tc_min, tc_max, hf_min, hf_max, n_samples):
+        """_summary_
+
+        Parameters
+        ----------
+        tc_min : _type_
+            _description_
+        tc_max : _type_
+            _description_
+        hf_min : _type_
+            _description_
+        hf_max : _type_
+            _description_
+        n_samples : _type_
+            _description_
+
+        Returns
+        -------
+        _type_
+            _description_
+        """
         space = Space([(tc_min, tc_max), (hf_min, hf_max)])
         samples = Sobol().generate(space.dimensions, n_samples)
         return [(sample[0], sample[1]) for sample in samples]
@@ -138,6 +166,13 @@ class CreateThermalDataset:
         return classified_samples
 
     def get_class_distribution(self):
+        """_summary_
+
+        Returns
+        -------
+        _type_
+            _description_
+        """
         class_counts = [0, 0, 0, 0]
         for _, _, label in self.classified_samples:
             class_counts[label] += 1
