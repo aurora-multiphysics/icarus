@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "icarus"
-version = "0.1.0"
+name = "icarus-fusion"
+version = "0.1.2"
 description = "A machine learning tool for fusion simulation validation."
 authors = [
   { name = "arjavp-ukaea", email = "arjav.poudel@ukaea.uk" },
@@ -21,6 +21,13 @@ classifiers = [
 requires-python = ">=3.11"
 dependencies = [
   "numpy>=1.26.0",
+  "netCDF4>=1.6.5",
+  "scikit-learn>=1.5.0",
+  "scikit-optimize>=0.10.2",
+  "mooseherder>=0.1.0",
+  "matplotlib>=3.8.0",
+  "tqdm>=4.66.4",
+  "scipy==1.11.3",
 ]
 
 [project.urls]
@@ -28,4 +35,8 @@ dependencies = [
 "Issue Tracker" = "https://github.com/aurora-multiphysics/icarus/issues"
 
 [tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"icarus" = ["data/*.npz"]
 where = ["src"]
