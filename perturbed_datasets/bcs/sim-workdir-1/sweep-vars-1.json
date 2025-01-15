@@ -1,0 +1,26 @@
+[
+    [
+        {
+            "init_temp": 25,
+            "max_temp": 500
+        }
+    ],
+    [
+        {
+            "init_temp": 25,
+            "max_temp": 1000
+        }
+    ],
+    [
+        {
+            "init_temp": 50,
+            "max_temp": 500
+        }
+    ],
+    [
+        {
+            "init_temp": 50,
+            "max_temp": 1000
+        }
+    ]
+]
