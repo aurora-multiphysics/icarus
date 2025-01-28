@@ -38,7 +38,7 @@ def generate_labelled_dataset(folder_path):
         sens_data = pyvale.SensorData(positions=sens_pos)
 
         tc_array = pyvale.SensorArrayFactory \
-            .thermocouples_basic_errs(sim_data,
+            .thermocouples_no_errs(sim_data,
                                         sens_data,
                                         field_key,
                                         spat_dims=2)
