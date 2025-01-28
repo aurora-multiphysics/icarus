@@ -1,6 +1,6 @@
 #_* Variables Block
 max_temp = 500
-init_temp = 20
+init_temp = 60
 xmax = 10
 ymax = 2
 thermal_conductivity = 45

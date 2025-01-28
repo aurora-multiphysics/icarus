@@ -2,7 +2,7 @@
 max_temp = 500
 init_temp = 20
 xmax = 10
-ymax = 2
+ymax = 6
 thermal_conductivity = 45
 specific_heat = 0.5
 prop_values = 8000
