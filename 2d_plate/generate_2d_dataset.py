@@ -1,5 +1,6 @@
 from pathlib import Path
 from itertools import product
+import random
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          MooseConfig,
@@ -12,10 +13,9 @@ USER_DIR = Path.home()
 
 def main(param_names, param_values) -> None:
     print('Start minimal full functionality example') 
-    print(param_values)
-
 
     moose_input = Path('2d_plate/plate_2d_thermal.i')
+
     moose_modifier = InputModifier(moose_input,'#','')
 
     moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
@@ -24,9 +24,55 @@ def main(param_names, param_values) -> None:
                               n_threads = 2,
                               redirect_out = False)
 
+    # Generate ground truth
+    dir_manager = DirectoryManager(n_dirs=1)  
+    dir_manager.set_base_dir(Path('2d_plate/perturbed_datasets/'))
+    dir_manager.set_sub_dir_name('ground_truth')
+    dir_manager.clear_dirs()
+    dir_manager.create_dirs()
+
+    herd = MooseHerd([moose_runner], [moose_modifier], dir_manager)
+    herd.set_num_para_sims(n_para=1)  
+    herd.set_keep_flag(False)
+
+    herd.run_para([{}])
+
+    # Generate perturbed datasets
     n_dirs = 1
     for i in range(len(param_names)):
         n_dirs *= len(param_values[i])
+    dir_manager = DirectoryManager(n_dirs=n_dirs)
+
+    herd = MooseHerd([moose_runner],[moose_modifier],dir_manager)
+    herd.set_num_para_sims(n_para=n_dirs)
+    herd.set_keep_flag(False)
+
+    dir_manager.set_base_dir(Path('2d_plate/perturbed_datasets/'))
+    dir_manager.set_sub_dir_name(str(param_names[0]))
+    dir_manager.clear_dirs()
+    dir_manager.create_dirs()
+
+    moose_vars = []
+    for param in param_values[0]:
+        moose_vars.append([{str(param_names[0]):param}])
+
+    for _ in range(NUM_PARA_RUNS):
+        herd.run_para(moose_vars)
+
+    # Generate validation datasets
+    validation_values = [[]]
+    num_validation_values = 2
+    for i in range(num_validation_values):
+        distinct_val = False
+        while not distinct_val:
+            validation_value = random.uniform(min([val for sublist in param_values for val in sublist]),
+                                         max([val for sublist in param_values for val in sublist]))
+            if validation_value not in param_values and validation_value not in validation_values:
+                distinct_val = True
+
+    n_dirs = 1
+    for i in range(len(param_names)):
+        n_dirs *= len(validation_values[i])
     dir_manager = DirectoryManager(n_dirs=n_dirs)
 
     herd = MooseHerd([moose_runner],[moose_modifier],dir_manager)
@@ -38,16 +84,8 @@ def main(param_names, param_values) -> None:
     dir_manager.clear_dirs()
     dir_manager.create_dirs()
 
-    '''
-    param_combinations = product(*param_values)
     moose_vars = []
-    for combination in param_combinations:
-        params = {param_names[i]: combination[i] for i in range(len(param_names))}
-        moose_vars.append([params])
-    '''
-
-    moose_vars = []
-    for param in param_values[0]:
+    for param in validation_values[0]:
         moose_vars.append([{str(param_names[0]):param}])
 
     for _ in range(NUM_PARA_RUNS):
