@@ -5,6 +5,7 @@ import numpy as np
 import pyvale
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          MooseConfig,
@@ -14,7 +15,7 @@ from mooseherder import (MooseHerd,
                          ExodusReader)
 
 
-NUM_PARA_RUNS = 2
+NUM_PARA_RUNS = 1
 USER_DIR = Path.home()
 
 
@@ -51,15 +52,17 @@ def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para, keep
 def generate_ground_truths(moose_runner, moose_modifier, base_dir, param_values):
     for i in range(math.ceil(len(param_values[0]) / 5)):
         dir_manager = setup_directory_manager(base_dir, 'ground_truth', 1)
-        run_herd(moose_runner, moose_modifier, dir_manager, [{}], 1)
+        run_herd(moose_runner, moose_modifier, dir_manager, [[{}]], 1)
 
 
 def generate_perturbed_datasets(moose_runner, moose_modifier, base_dir, param_names, param_values):
+    moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
         n_dirs *= len(param_values[i])
     dir_manager = setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
-    moose_vars = [{str(param_names[0]): param} for param in param_values[0]]
+    for param in param_values[0]:
+        moose_vars.append([{str(param_names[0]): param}]) 
     run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_dirs)
 
 
@@ -72,17 +75,19 @@ def generate_validation_values(param_values, num_validation_values=2):
                                              max([val for sublist in param_values for val in sublist]))
             if validation_value not in param_values and validation_value not in validation_values:
                 distinct_val = True
-        validation_values.append(validation_value)  
+        validation_values[0].append(validation_value)  
 
     return validation_values
 
 
 def generate_validation_datasets(moose_runner, moose_modifier, base_dir, param_names, validation_values):
+    moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
         n_dirs *= len(validation_values[i])
     dir_manager = setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
-    moose_vars = [{str(param_names[0]): param} for param in validation_values[0]]
+    for param in validation_values[0]:
+        moose_vars.append([{str(param_names[0]): param}]) 
     run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_dirs)
 
 
@@ -113,14 +118,11 @@ def generate_datasets(path, filename):
     '''
 
     for i in range(len(param_names)):
-        param_names = param_names[i]
-        param_values = param_values[i]
+        generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_values[i])
+        generate_perturbed_datasets(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_names[i], param_values[i])
 
-        generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_values)
-        generate_perturbed_datasets(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_names, param_values)
-
-        validation_values = generate_validation_values(param_values)
-        generate_validation_datasets(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), param_names, validation_values)
+        validation_values = generate_validation_values(param_values[i])
+        generate_validation_datasets(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), param_names[i], validation_values)
         generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), validation_values)
 
 
@@ -186,7 +188,7 @@ def model(path, filename):
 
 #path = input('Enter the desired path ')
 #filename = input('Enter the input file name ')
-path = "full_functionality/"
+path = "2d_plate/"
 filename = "plate_2d_thermal.i"
 if __name__ == "__main__":
     model(path, filename)

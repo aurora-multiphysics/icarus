@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 
 def generate_labelled_dataset(folder_path):
     labelled_dataset = np.empty((0, 7))
-    parameters = ["ground_truth", "xmax", "ymax", "init_temp", "max_temp", "thermal_conductivity", "specific_heat", "prop_values"]
+    parameters = ["xmax", "ymax", "init_temp", "max_temp", "thermal_conductivity", "specific_heat", "prop_values"]
 
     for file_path in folder_path.rglob('*.e'):
         for i in range(len(parameters)):
@@ -46,7 +46,7 @@ def generate_labelled_dataset(folder_path):
         measurements = tc_array.get_measurements()[:, 0, 1] 
 
         measurements = np.append(measurements, label) # add label to measurements 
-        labelled_dataset = np.vstack([labelled_dataset, measurements]) # add to labelled dataset 
+        labelled_dataset = np.vstack([labelled_dataset, measurements]) # add to labelled dataset
 
     return labelled_dataset
     

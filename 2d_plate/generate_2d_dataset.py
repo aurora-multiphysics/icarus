@@ -11,7 +11,7 @@ from mooseherder import (MooseHerd,
 NUM_PARA_RUNS = 2
 USER_DIR = Path.home()
 
-def main(param_names, param_values) -> None:
+def generate_datasets(param_names, param_values):
     print('Start minimal full functionality example') 
 
     moose_input = Path('2d_plate/plate_2d_thermal.i')
@@ -98,16 +98,17 @@ def main(param_names, param_values) -> None:
     print('Finished.')
 
 
-if __name__ == '__main__':
-    param_names = [["xmax"], ["ymax"], ["init_temp"], ["max_temp"], 
-                   ["thermal_conductivity"], ["specific_heat"], ["prop_values"]]
-    param_values = [[[8,22]],
-                    [[5,9]],
-                    [[25,45]],
-                    [[300,900]],
-                    [[18,52]], 
-                    [[1.25,2.75]],
-                    [[3000,11000]]]
-    for i in range(len(param_names)):
-        main(param_names[i], param_values[i])
+param_names = [["xmax"], ["ymax"], ["init_temp"], ["max_temp"], 
+                ["thermal_conductivity"], ["specific_heat"], ["prop_values"]]
+param_values = [[[8,22]],
+                [[5,9]],
+                [[25,45]],
+                [[300,900]],
+                [[18,52]], 
+                [[1.25,2.75]],
+                [[3000,11000]]]
+for i in range(len(param_names)):
+    generate_datasets(param_names[i], param_values[i])
+
+    
 

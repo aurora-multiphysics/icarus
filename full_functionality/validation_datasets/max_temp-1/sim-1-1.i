@@ -1,5 +1,5 @@
 #_* Variables Block
-max_temp = 500
+max_temp = 755.7219789598058
 init_temp = 20
 xmax = 10
 ymax = 2

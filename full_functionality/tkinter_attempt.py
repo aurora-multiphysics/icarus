@@ -6,6 +6,7 @@ import pyvale
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from tkinter import *
+import joblib
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          MooseConfig,
@@ -52,15 +53,17 @@ def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para, keep
 def generate_ground_truths(moose_runner, moose_modifier, base_dir, param_values):
     for i in range(math.ceil(len(param_values[0]) / 5)):
         dir_manager = setup_directory_manager(base_dir, 'ground_truth', 1)
-        run_herd(moose_runner, moose_modifier, dir_manager, [{}], 1)
+        run_herd(moose_runner, moose_modifier, dir_manager, [[{}]], 1)
 
 
 def generate_perturbed_datasets(moose_runner, moose_modifier, base_dir, param_names, param_values):
+    moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
         n_dirs *= len(param_values[i])
     dir_manager = setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
-    moose_vars = [{str(param_names[0]): param} for param in param_values[0]]
+    for param in param_values[0]:
+        moose_vars.append([{str(param_names[0]): param}]) 
     run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_dirs)
 
 
@@ -73,72 +76,33 @@ def generate_validation_values(param_values, num_validation_values=2):
                                              max([val for sublist in param_values for val in sublist]))
             if validation_value not in param_values and validation_value not in validation_values:
                 distinct_val = True
-        validation_values.append(validation_value)  
+        validation_values[0].append(validation_value)  
 
     return validation_values
 
 
 def generate_validation_datasets(moose_runner, moose_modifier, base_dir, param_names, validation_values):
+    moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
         n_dirs *= len(validation_values[i])
     dir_manager = setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
-    moose_vars = [{str(param_names[0]): param} for param in validation_values[0]]
+    for param in validation_values[0]:
+        moose_vars.append([{str(param_names[0]): param}]) 
     run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_dirs)
 
 
-def generate_datasets(path, filename, parameters, moose_runner, moose_modifier):
+def generate_datasets(path, parameters, moose_runner, moose_modifier):
     param_names = [[key] for key in parameters.keys()]
     param_values = [[value] for value in parameters.values()]
 
     for i in range(len(param_names)):
-        param_names = param_names[i]
-        param_values = param_values[i]
+        generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_values[i])
+        generate_perturbed_datasets(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_names[i], param_values[i])
 
-        generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_values)
-        generate_perturbed_datasets(moose_runner, moose_modifier, Path(str(path+'perturbed_datasets/')), param_names, param_values)
-
-        validation_values = generate_validation_values(param_values)
-        generate_validation_datasets(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), param_names, validation_values)
+        validation_values = generate_validation_values(param_values[i])
+        generate_validation_datasets(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), param_names[i], validation_values)
         generate_ground_truths(moose_runner, moose_modifier, Path(str(path+'validation_datasets/')), validation_values)
-
-
-def generate_labelled_dataset(folder_path):
-    labelled_dataset = np.empty((0, 7))
-
-    for file_path in folder_path.rglob('*.e'):
-        if "ground_truth" in str(file_path):
-            label = 0
-        else:
-            label = 1
-
-        sim_data = ExodusReader(file_path).read_all_sim_data()
-        field_key = "temperature"
-
-        sim_data.coords = sim_data.coords*1000.0
-
-        xmax = np.max(sim_data.coords[:, 0])
-        ymax = np.max(sim_data.coords[:, 1])
-
-        n_sens = (3,2,1)
-        x_lims = (0.0,xmax)
-        y_lims = (0.0,ymax)
-        z_lims = (0.0,0.0)
-        sens_pos = pyvale.create_sensor_pos_array(n_sens,x_lims,y_lims,z_lims)
-        sens_data = pyvale.SensorData(positions=sens_pos)
-
-        tc_array = pyvale.SensorArrayFactory \
-            .thermocouples_no_errs(sim_data,
-                                        sens_data,
-                                        field_key,
-                                        spat_dims=2)
-
-        measurements = tc_array.get_measurements()[:, 0, 1] 
-
-        measurements = np.append(measurements, label) 
-        labelled_dataset = np.vstack([labelled_dataset, measurements]) 
-
-    return labelled_dataset
 
 
 def accept_file():
@@ -147,6 +111,7 @@ def accept_file():
         nonlocal path, filename
         path = str(file_path.get())
         filename = str(file_name.get())
+        file_root.quit()
         file_root.destroy()
 
     path, filename = None, None
@@ -193,8 +158,8 @@ def accept_parameters(parameters):
 
                 parameters[param_name] = param_values
 
-        print("Destroy")
         param_root.destroy()
+        param_root.update()
 
     param_root = Tk()
 
@@ -224,7 +189,7 @@ def accept_parameters(parameters):
     for i, param in enumerate(params):
         row = {}
 
-        row['checkbox_var'] = BooleanVar(value=True)
+        row['checkbox_var'] = BooleanVar(value=False)
 
         checkbox = Checkbutton(table_frame, variable=row['checkbox_var'])
         checkbox.grid(row=i+1, column=0, padx=5, pady=5)
@@ -257,6 +222,46 @@ def accept_parameters(parameters):
     return parameters
 
 
+def generate_labelled_dataset(folder_path):
+    sensx, sensy, sensz = 3, 2, 1
+    labelled_dataset_cols = (sensx*sensy*sensz)+1
+    labelled_dataset = np.empty((0, labelled_dataset_cols))
+
+    for file_path in folder_path.rglob('*.e'):
+        if "ground_truth" in str(file_path):
+            label = 0
+        else:
+            label = 1
+
+        sim_data = ExodusReader(file_path).read_all_sim_data()
+        field_key = "temperature"
+
+        sim_data.coords = sim_data.coords*1000.0
+
+        xmax = np.max(sim_data.coords[:, 0])
+        ymax = np.max(sim_data.coords[:, 1])
+
+        n_sens = (sensx,sensy,sensz)
+        x_lims = (0.0,xmax)
+        y_lims = (0.0,ymax)
+        z_lims = (0.0,0.0)
+        sens_pos = pyvale.create_sensor_pos_array(n_sens,x_lims,y_lims,z_lims)
+        sens_data = pyvale.SensorData(positions=sens_pos)
+
+        tc_array = pyvale.SensorArrayFactory \
+            .thermocouples_no_errs(sim_data,
+                                        sens_data,
+                                        field_key,
+                                        spat_dims=2)
+
+        measurements = tc_array.get_measurements()[:, 0, 1] 
+
+        measurements = np.append(measurements, label) 
+        labelled_dataset = np.vstack([labelled_dataset, measurements]) 
+
+    return labelled_dataset
+
+
 def model():
     path, filename = accept_file()
 
@@ -264,7 +269,7 @@ def model():
 
     parameters = accept_parameters(moose_modifier.get_vars())
 
-    generate_datasets(path, filename, parameters, moose_runner, moose_modifier)
+    generate_datasets(path, parameters, moose_runner, moose_modifier)
 
     X_train = generate_labelled_dataset(Path(str(path+'perturbed_datasets/')))[:, :-1]
     y_train = generate_labelled_dataset(Path(str(path+'perturbed_datasets/')))[:, -1] 
@@ -282,16 +287,21 @@ def model():
     val_accuracy = accuracy_score(y_val, y_pred)
     print(f"Random Forest Validation Accuracy: {val_accuracy * 100:.2f}%")
 
+    save_model = input("Save model? (Y/N) ")
+    if save_model.lower() == "y":
+        model_filename = str(filename).replace('.i', '')
+        joblib.dump(rf_classifier, str(path)+model_filename+'_model.pkl')
+
 
 if __name__ == "__main__":
     model()
 
 
-# Next steps:
-    # Debug multiprocessing error
-    # Delete unlabelled datasets
+# Next steps:  
+    # Delete unlabelled datasets(?)
     # Explain + enforce suitable user inputs 
-    # Refine valid/invalid classifier model (incorporating errors, etc)
-    # Expand to multi-classification model
-    # Expand to non-thermal solves (eg mechanical)
+    # Refine by incorporating errors, etc
+    # Allow user to define numnber of sensors + positions 
     # Testing, examples + tutorials, packaging, etc
+    # Expand to multi-classifier 
+    # Accept various input files, starting with 3D monoblock
