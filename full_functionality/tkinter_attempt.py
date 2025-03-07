@@ -21,6 +21,29 @@ USER_DIR = Path.home()
 
 
 def setup_moose_runner(path, filename):
+    """setup_moose_runner: Constructor for MOOSE runner taking a MooseConfig object
+        that contains the paths to the main MOOSE install, the MOOSE app and
+        the MOOSE app name. Sets parallelisation options to 1 task
+        and 2 threads. Sets environment variables required for MPI setup.
+
+    Parameters
+    ----------
+    path : str
+        Contains the path to the folder where the input file is saved and the datasets 
+        and model(s) will be stored
+    filename : str
+        Contains the name of the input file being used to generate the model.
+
+    Returns
+    -------
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file.
+        Specifies the comment character. Variable definition blocks should begin 
+        #comment character#* and end #comment character#**, e.g. #_* and #** for
+        moose.
+    """
     moose_input = Path(str(path + filename))
     moose_modifier = InputModifier(moose_input, '#', '')
     moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
@@ -29,7 +52,28 @@ def setup_moose_runner(path, filename):
     return moose_runner, moose_modifier
 
 
-def setup_directory_manager(base_dir, sub_dir_name, n_dirs):
+def setup_directory_manager(base_dir, sub_dir_name, n_dirs = 1):
+    """setup_directory_manager: sets up directory manager to manage directories for running 
+        simulations in parallel with the mooseherd. Clears existing directories and creates 
+        specified new ones with given names
+
+    Parameters
+    ----------
+    base_dir : Path
+        Sets the base directory to create sub-directories for running the simulations. 
+        The base directory must exist.
+    sub_dir_name : str
+        String to be used at the start of the created sub-directores. 
+        Default on creation is 'sim-workdir'. Populates the list of run directories using 
+        the new sub directory name.
+    n_dirs : int, optional
+        Number of directories to be created., by default 1
+
+    Returns
+    -------
+    dir_manager : DirectoryManager
+        Used to control how many and which directories are used to run the simulations.
+    """
     dir_manager = DirectoryManager(n_dirs=n_dirs)
     dir_manager.set_base_dir(base_dir)
     dir_manager.set_sub_dir_name(sub_dir_name)
@@ -38,7 +82,39 @@ def setup_directory_manager(base_dir, sub_dir_name, n_dirs):
     return dir_manager
 
 
-def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para, keep_flag=False):
+def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para=1, keep_flag=False):
+    """run_herd: used to run parametric sweeps of simulation chains in
+        parallel with configurable parallelisation options. Takes a list of
+        SimRunner objects and a corresponding list of InputModifiers to insert the
+        variables into the input scripts for the SimRunners. Will first call all InputModifiers 
+        in the specified order and then call run on all the SimRunners in order. Uses the 
+        DirectoryManager class to log the directories in which each parallel worker is
+        creating input files and running simulations. Uses the SweepReader class to read the 
+        output from one or more calls to mooseherd.run_para().
+        Has configurable options for reading in the variable sweep in parallel.
+
+    Parameters
+    ----------
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables. 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file. Specifies the comment 
+        character. Variable definition blocks should begin #comment character#* and end 
+        #comment character#**, e.g. #_* and #** for moose.
+    dir_manager : DirectoryManager
+        Used to control how many and which directories are used to run the simulations.
+    moose_vars : list[InputModifier]
+        Used to extract and modify the variables in the input file.
+        Specifies the comment character. Variable definition blocks should begin 
+        #comment character#* and end #comment character#**, e.g. #_* and #** for
+        moose.
+    n_para : int, optional
+        Sets the number of simulation chains to run in parallel. , by default 1
+    keep_flag : bool, optional
+        Flag used for allowing multiple calls to run to keep everything or to 
+        overwrite each time, by default False - overwrite inputs and outputs with multiple calls
+    """
+    
     herd = MooseHerd([moose_runner], [moose_modifier], dir_manager)
     herd.set_num_para_sims(n_para=n_para)
     herd.set_keep_flag(keep_flag)
@@ -51,12 +127,52 @@ def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para, keep
 
 
 def generate_ground_truths(moose_runner, moose_modifier, base_dir, param_values):
+    """generate_ground_truths: used to generate the ground truth by running the input file
+        with no modifications, and save the results to the required base_dir under the 
+        sub_dir_name "ground_truth". Creates 1 ground_truth dataset for every 5 perturbed 
+        datasets
+
+    Parameters
+    ----------
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables. 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file. Specifies the comment 
+        character. Variable definition blocks should begin #comment character#* and end 
+        #comment character#**, e.g. #_* and #** for moose.
+    base_dir : Path
+        Contains the base directory to save ground_truth sub-directory for running the 
+        simulations. 
+    param_values : list[float]
+        List of values for the currently selected parameter(s). Used to determine how many 
+        ground_truth datasets to generate.
+    """
     for i in range(math.ceil(len(param_values[0]) / 5)):
         dir_manager = setup_directory_manager(base_dir, 'ground_truth', 1)
         run_herd(moose_runner, moose_modifier, dir_manager, [[{}]], 1)
 
 
 def generate_perturbed_datasets(moose_runner, moose_modifier, base_dir, param_names, param_values):
+    """generate_perturbed_datasets: used to generate the perturbed datasets by running the input 
+        file with modifications to specified parameter(s), and save the results to the required
+        base_dir under a sub_dir_named for the perturbed parameter.
+
+    Parameters
+    ----------
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables. 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file. Specifies the comment 
+        character. Variable definition blocks should begin #comment character#* and end 
+        #comment character#**, e.g. #_* and #** for moose.
+    base_dir : Path
+        Contains the base directory to save ground_truth sub-directory for running the 
+        simulations. 
+    param_names : list[string]
+        List of the names of the perturbed parameters.
+    param_values : list[float]
+        List of values for the currently selected parameter(s).
+    """
     moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
@@ -68,6 +184,25 @@ def generate_perturbed_datasets(moose_runner, moose_modifier, base_dir, param_na
 
 
 def generate_validation_values(param_values, num_validation_values=2):
+    """generate_validation_values: used to generate a specified number of validation values 
+        for the selected parameter, so that the model can be tested to see if it can correctly
+        determine when the parameter has been perturbed to a value that was not present in the 
+        training dataset.
+
+    Parameters
+    ----------
+    param_values : list[float]
+        List of training values for the currently selected parameter(s).
+    num_validation_values : int, optional
+        Number of validation values to generate for each parameter, by default 2
+
+    Returns
+    -------
+    validation_values : list[list[float]]
+        List containing a list(s) of validation values for each parameter, to be used to
+        determine the value of the InputModifier for that parameter for the run to be saved
+        under validation_datasets/param_name
+    """
     validation_values = [[]]
     for i in range(num_validation_values):
         distinct_val = False
@@ -82,6 +217,26 @@ def generate_validation_values(param_values, num_validation_values=2):
 
 
 def generate_validation_datasets(moose_runner, moose_modifier, base_dir, param_names, validation_values):
+    """generate_validation_datasets: used to generate the validation datasets by running the input 
+        file with modifications to specified parameter(s), and save the results to the required
+        base_dir under a sub_dir_named for the perturbed parameter.
+
+    Parameters
+    ----------
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables. 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file. Specifies the comment 
+        character. Variable definition blocks should begin #comment character#* and end 
+        #comment character#**, e.g. #_* and #** for moose.
+    base_dir : Path
+        Contains the base directory to save ground_truth sub-directory for running the 
+        simulations. 
+    param_names : list[string]
+        List of the names of the perturbed parameters.
+    validation_values : list[list[float]]
+        List of values for the currently selected parameter(s).
+    """
     moose_vars = list([])
     n_dirs = 1
     for i in range(len(param_names)):
@@ -93,6 +248,25 @@ def generate_validation_datasets(moose_runner, moose_modifier, base_dir, param_n
 
 
 def generate_datasets(path, parameters, moose_runner, moose_modifier):
+    """generate_datasets: used to generate the unlabelled ground truth, perturbed, and 
+        validation datasets by running the required functions with the necessary parameter
+        names and values, and save paths.
+
+    Parameters
+    ----------
+    path : str
+        Contains the path to the folder where the input file is saved and the datasets 
+        and model(s) will be stored.
+    parameters : dict{str : list[float]}
+        Contains the names of the parameters to be perturbed and the values they should take
+        for each run.
+    moose_runner : MooseRunner
+        Constructed MOOSE runner used to run the input file with modified variables. 
+    moose_modifier : InputModifier
+        Used to extract and modify the variables in the input file. Specifies the comment 
+        character. Variable definition blocks should begin #comment character#* and end 
+        #comment character#**, e.g. #_* and #** for moose.
+    """
     param_names = [[key] for key in parameters.keys()]
     param_values = [[value] for value in parameters.values()]
 
@@ -106,8 +280,22 @@ def generate_datasets(path, parameters, moose_runner, moose_modifier):
 
 
 def accept_file():
+    """accept_file: used to allow user to input path to input file and input file name
+        via a tkinter user interface
+
+    Returns
+    -------
+    path : str
+        String containing the path inputted to the user interface.
+    filename : str
+        String containing the name of the input file inputted to the user interface.
+    """
     
     def submit_file():
+        """submit_file: specifies what should happen when the submit button is pressed.
+            The values within the Entry boxes for path and filename should be saved to 
+            their corresponding variables, and the tkinter window should close.
+        """
         nonlocal path, filename
         path = str(file_path.get())
         filename = str(file_name.get())
@@ -136,8 +324,28 @@ def accept_file():
 
 
 def accept_parameters(parameters):
+    """accept_parameters: used to allow user to select which parameters to perturb and the range
+        and interval of values to be used for each parameter.
+
+    Parameters
+    ----------
+    parameters : dict{str : float}
+        Dictionary of parameter names and their corresponding values in the default input file.
+        Used to allow users to select which parameters to modify, and show them the default
+        values so they don't include them again.
+
+    Returns
+    ----------
+    parameters : dict{str : list[float]}
+        Dictionary of parameter names and their corresponding list of values for perturbation.
+    """
 
     def submit_parameters():
+        """submit_parameter: specifies what should happen when the submit button is pressed.
+            The values within the Entry boxes for min_val, max_val and interval for the selected 
+            parameters should be saved to their corresponding variables to allow creation of 
+            param_values list, and the tkinter window should close.
+        """
         nonlocal parameters
         parameters = {}
         
@@ -223,6 +431,24 @@ def accept_parameters(parameters):
 
 
 def generate_labelled_dataset(folder_path):
+    """generate_labelled_dataset: used to create a dataset by extracting values from the outputs
+        of each run, using ExodusReader class to read the data and PyVale to create an array
+        of sensors used to extract measurements of the required field at given points.
+        Assigns a label to each dataset depending on which (if any) parameter has been perturbed.    
+
+    Parameters
+    ----------
+    folder_path : Path
+        Specifies the location of the unlabelled datasets from which the information for the 
+        labelled dataset should be extracted. Should be the base directory - i.e. either 
+        perturbed_datasets/ or validation_datasets/.
+
+    Returns
+    -------
+    labelled_dataset: np.array[np.array[list[float], int]]
+        2D array containing the list of extracted measurements for each dataset and its 
+        corresponding label. To be used to train/validate the model.
+    """
     sensx, sensy, sensz = 3, 2, 1
     labelled_dataset_cols = (sensx*sensy*sensz)+1
     labelled_dataset = np.empty((0, labelled_dataset_cols))
@@ -263,6 +489,11 @@ def generate_labelled_dataset(folder_path):
 
 
 def model():
+    """model: the main function, used to run all other functions required to generate the 
+        labelled training and validation datasets, then train the Random Forest model on the
+        training datasets, use it to make predictions for the validation dataset, and verify
+        the accuracy of the model. Outputs the pertinent information to the user, and then
+        allows them to decide whether or not to save the model as a .pkl file."""
     path, filename = accept_file()
 
     moose_runner, moose_modifier = setup_moose_runner(path, filename)
@@ -298,10 +529,13 @@ if __name__ == "__main__":
 
 
 # Next steps:  
+    # PyTest
+    # Transition to class(es)
     # Delete unlabelled datasets(?)
+    # Path management for overwriting existing data, etc
     # Explain + enforce suitable user inputs 
-    # Refine by incorporating errors, etc
+    # Improve by incorporating errors, accepting multiple simultaneous perturbations, etc
     # Allow user to define numnber of sensors + positions 
-    # Testing, examples + tutorials, packaging, etc
+    # Examples + tutorials, packaging, etc
     # Expand to multi-classifier 
     # Accept various input files, starting with 3D monoblock
