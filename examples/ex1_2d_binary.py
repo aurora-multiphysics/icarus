@@ -7,6 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from tkinter import *
 import joblib
+import shutil
 from mooseherder import (MooseHerd,
                          MooseRunner,
                          MooseConfig,
@@ -20,7 +21,7 @@ NUM_PARA_RUNS = 2
 USER_DIR = Path.home()
 
 
-def setup_moose_runner(path, filename):
+def setup_moose_runner(input_file_path):
     """setup_moose_runner: Constructor for MOOSE runner taking a MooseConfig object
         that contains the paths to the main MOOSE install, the MOOSE app and
         the MOOSE app name. Sets parallelisation options to 1 task
@@ -28,11 +29,8 @@ def setup_moose_runner(path, filename):
 
     Parameters
     ----------
-    path : str
-        Contains the path to the folder where the input file is saved and the datasets 
-        and model(s) will be stored
-    filename : str
-        Contains the name of the input file being used to generate the model.
+    input_file_path : str
+        Contains the path to the  input file.
 
     Returns
     -------
@@ -44,7 +42,7 @@ def setup_moose_runner(path, filename):
         #comment character#* and end #comment character#**, e.g. #_* and #** for
         moose.
     """
-    moose_input = Path(str(path + filename))
+    moose_input = Path(str(input_file_path))
     moose_modifier = InputModifier(moose_input, '#', '')
     moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
     moose_runner = MooseRunner(moose_config)
@@ -126,7 +124,7 @@ def run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_para=1, ke
     read_all = sweep_reader.read_results_para()
 
 
-def generate_ground_truths(moose_runner, moose_modifier, base_dir, param_values):
+def generate_ground_truths(moose_runner, moose_modifier, base_dir, num_ground_truths):
     """generate_ground_truths: used to generate the ground truth by running the input file
         with no modifications, and save the results to the required base_dir under the 
         sub_dir_name "ground_truth". Creates 1 ground_truth dataset for every 5 perturbed 
@@ -143,13 +141,14 @@ def generate_ground_truths(moose_runner, moose_modifier, base_dir, param_values)
     base_dir : Path
         Contains the base directory to save ground_truth sub-directory for running the 
         simulations. 
-    param_values : list[float]
-        List of values for the currently selected parameter(s). Used to determine how many 
-        ground_truth datasets to generate.
+    num_ground_truth : list[float]
+        Number of ground_truth datasets to generate.
     """
-    for i in range(math.ceil(len(param_values[0]) / 5)):
-        dir_manager = setup_directory_manager(base_dir, 'ground_truth', 1)
-        run_herd(moose_runner, moose_modifier, dir_manager, [[{}]], 1)
+    moose_vars = list([])
+    dir_manager = setup_directory_manager(base_dir, 'ground_truth', num_ground_truths)
+    for i in range(num_ground_truths):
+        moose_vars.append([{}])
+    run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, num_ground_truths)
 
 
 def generate_dataset(moose_runner, moose_modifier, base_dir, param_names, param_values):
@@ -166,7 +165,7 @@ def generate_dataset(moose_runner, moose_modifier, base_dir, param_names, param_
         character. Variable definition blocks should begin #comment character#* and end 
         #comment character#**, e.g. #_* and #** for moose.
     base_dir : Path
-        Contains the base directory to save ground_truth sub-directory for running the 
+        Contains the base directory to save perturbed_param sub-directory for running the 
         simulations. 
     param_names : list[string]
         List of the names of the perturbed parameters.
@@ -216,16 +215,15 @@ def generate_validation_values(param_values, num_validation_values=2):
     return validation_values
 
 
-def generate_datasets(path, parameters, moose_runner, moose_modifier):
+def generate_datasets(output_file_path, parameters, num_validation_values, moose_runner, moose_modifier):
     """generate_datasets: used to generate the unlabelled ground truth, perturbed, and 
         validation datasets by running the required functions with the necessary parameter
         names and values, and save paths.
 
     Parameters
     ----------
-    path : str
-        Contains the path to the folder where the input file is saved and the datasets 
-        and model(s) will be stored.
+    output_file_path : str
+        Contains the path to the folder where the datasets and model(s) will be stored.
     parameters : dict{str : list[float]}
         Contains the names of the parameters to be perturbed and the values they should take
         for each run.
@@ -239,12 +237,21 @@ def generate_datasets(path, parameters, moose_runner, moose_modifier):
     param_names = [[key] for key in parameters.keys()]
     param_values = [[value] for value in parameters.values()]
 
+    perturbed_path, perturbed_vals = Path(str(output_file_path+"perturbed_datasets/")), None
+    validation_path, validation_vals = Path(str(output_file_path+"validation_datasets/")), None
+    paths = {perturbed_path : perturbed_vals, validation_path: validation_vals}
+
     for i in range(len(param_names)):
-        validation_values = generate_validation_values(param_values[i])
-        paths = {Path(str(path+"perturbed_datasets/")) : param_values[i], Path(str(path+"validation_datasets/")) : validation_values}
+        validation_values = generate_validation_values(param_values[i], num_validation_values[i])
+        paths[perturbed_path] = param_values[i]
+        paths[validation_path] = validation_values
         for path, values in paths.items():
-            generate_ground_truths(moose_runner, moose_modifier, path, values)
             generate_dataset(moose_runner, moose_modifier, path, param_names[i], values)
+
+    for path in paths.keys():
+        num_datasets = sum(1 for d in path.iterdir() if d.is_dir())
+        num_ground_truths = math.ceil(num_datasets/3)
+        generate_ground_truths(moose_runner, moose_modifier, path, num_ground_truths)
 
 def accept_file():
     """accept_file: used to allow user to input path to input file and input file name
@@ -252,39 +259,50 @@ def accept_file():
 
     Returns
     -------
-    path : str
-        String containing the path inputted to the user interface.
-    filename : str
-        String containing the name of the input file inputted to the user interface.
+    input_file_path : str
+        String containing the path to the input file inputted to the user interface.
+    output_file_path : str
+        String containing the path for outputs inputted to the user interface.
     """
     
     def submit_file():
         """submit_file: specifies what should happen when the submit button is pressed.
-            The values within the Entry boxes for path and filename should be saved to 
-            their corresponding variables, and the tkinter window should close.
-        """
-        nonlocal path, filename
-        path = str(file_path.get())
-        filename = str(file_name.get())
+            The values within the Entry boxes for input and output file paths should be 
+            saved to their corresponding variables, and the tkinter window should close.
 
-        if Path(path).exists() and Path (path+filename).exists():
+        Raises 
+        ----------
+        FileNotFoundError
+            If the file paths submitted aren't acceptable 
+        """
+        nonlocal input_file_path, output_file_path
+
+        try:
+            input_file_path = str(input_file_path_entry.get())
+            output_file_path = str(output_file_path_entry.get())
+
+            if not Path(input_file_path).exists() or not Path (output_file_path).exists():
+                if input_file_path[-2:] != ".i":
+                    raise FileNotFoundError(f"Specified input and/or output file path not found.")
+            
             file_root.quit()
             file_root.destroy()
-        else:
-            error_label.config(text="Specified path and/or input file not found.", fg="red")
+        except FileNotFoundError:
+            error_label.config(text="Specified input and/or output file path not found.", fg="red")
+            return
 
-    path, filename = None, None
+    input_file_path, output_file_path = None, None
 
     file_root = Tk()
 
-    Label(file_root, text='File path:').grid(row=0)
-    Label(file_root, text='Input file name:').grid(row=1)
-    default_path = StringVar(value="full_functionality/")
-    file_path = Entry(file_root, textvariable=default_path)
-    file_path.grid(row=0, column=1)
-    default_file = StringVar(value="plate_2d_thermal.i")
-    file_name = Entry(file_root, textvariable=default_file)
-    file_name.grid(row=1, column=1)
+    Label(file_root, text='Input file path:').grid(row=0)
+    Label(file_root, text='Output file path:').grid(row=1)
+    default_input_path = StringVar(value="scripts/moose/plate_2d_thermal.i")
+    input_file_path_entry = Entry(file_root, textvariable=default_input_path, width=30)
+    input_file_path_entry.grid(row=0, column=1)
+    default_output_path = StringVar(value="examples/example_outputs/ex1_outputs/")
+    output_file_path_entry = Entry(file_root, textvariable=default_output_path, width=30)
+    output_file_path_entry.grid(row=1, column=1)
 
     submit_button = Button(file_root, text="Submit", command=submit_file)
     submit_button.grid(row=2, column=0, columnspan=2, pady=10)
@@ -294,12 +312,12 @@ def accept_file():
 
     file_root.mainloop()    
 
-    return path, filename 
+    return input_file_path, output_file_path
 
 
 def accept_parameters(parameters):
-    """accept_parameters: used to allow user to select which parameters to perturb and the range
-        and interval of values to be used for each parameter.
+    """accept_parameters: used to allow user to select which parameters to perturb, and the range,
+        interval of perturbation values, and number of validation values to be used for each parameter.
 
     Parameters
     ----------
@@ -326,9 +344,12 @@ def accept_parameters(parameters):
             If the range or interval specified are invalid
         Value Error
             If there are fewer than 2 values for perturbation 
+        Value Error
+            If there are fewer than 2 values for validation
         """
-        nonlocal parameters
+        nonlocal parameters, num_val_values
         parameters = {}
+        num_val_values = []
 
         for row in rows:
             if row['checkbox_var'].get():  # Check if checkbox is ticked
@@ -338,6 +359,7 @@ def accept_parameters(parameters):
                     min_val = float(row['min_val'].get())
                     max_val = float(row['max_val'].get())
                     interval = float(row['interval'].get())
+                    num_validation_values = int(row['num_validation_values'].get())
 
                     if min_val >= max_val or interval <= 0:
                         raise ValueError("Invalid range or interval")
@@ -351,7 +373,11 @@ def accept_parameters(parameters):
 
                     if len(param_values) < 2:
                         raise ValueError("Insufficient perturbation values")
+                    
+                    if num_validation_values < 2:
+                        raise ValueError("Insufficient validation values")
 
+                    num_val_values.append(num_validation_values)
                     parameters[param_name] = param_values
 
                 except ValueError as e:
@@ -369,7 +395,7 @@ def accept_parameters(parameters):
     table_frame = Frame(param_root)
     table_frame.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
-    headers = ["Select", "Param Name", "Default Value", "Min Value", "Max Value", "Interval"]
+    headers = ["Select", "Param Name", "Default Value", "Min Value", "Max Value", "Interval", "No. Validation Values"]
     for col, header in enumerate(headers):
         Label(table_frame, text=header).grid(row=0, column=col, padx=5, pady=5)
 
@@ -383,10 +409,10 @@ def accept_parameters(parameters):
             else:
                 x = parameter_value/2
             params.append({"param_name": parameter_name,"default_val": parameter_value,"min_val": parameter_value+x, 
-                        "max_val": parameter_value+5*x,"interval": x})
+                        "max_val": parameter_value+5*x,"interval": x,"num_validation_values":3})
         except ValueError:
             params.append({"param_name": parameter_name,"default_val": parameter_value,"min_val": "", 
-                        "max_val": "","interval": ""})
+                        "max_val": "","interval": "","num_validation_values":""})
 
     rows = []
     for i, param in enumerate(params):
@@ -415,9 +441,14 @@ def accept_parameters(parameters):
         interval_entry = Entry(table_frame, textvariable=row['interval'], width=10)
         interval_entry.grid(row=i+1, column=5, padx=5, pady=5)
 
+        row['num_validation_values'] = StringVar(value=param['num_validation_values'])
+        num_validation_values_entry = Entry(table_frame, textvariable=row['num_validation_values'], width=10)
+        num_validation_values_entry.grid(row=i+1, column=6, padx=5, pady=5)
+
         rows.append(row)
 
     parameters = None
+    num_val_values = None
 
     submit_button = Button(param_root, text="Submit", command=submit_parameters)
     submit_button.grid(row=3, column=0, columnspan=2, pady=10)
@@ -427,7 +458,7 @@ def accept_parameters(parameters):
 
     param_root.mainloop()
 
-    return parameters
+    return num_val_values, parameters
 
 
 def generate_labelled_dataset(folder_path):
@@ -488,15 +519,30 @@ def generate_labelled_dataset(folder_path):
     return labelled_dataset
 
 
-def model(path, filename):
+def model(output_file_path):
     """model: used to train the Random Forest model on the training datasets, use the model 
         to make predictions for the validation dataset, and verify the accuracy of the model. 
         Outputs the pertinent information to the user, and then allows them to decide whether 
-        or not to save the model as a .pkl file."""
-    X_train = generate_labelled_dataset(Path(str(path+'perturbed_datasets/')))[:, :-1]
-    y_train = generate_labelled_dataset(Path(str(path+'perturbed_datasets/')))[:, -1] 
-    X_val = generate_labelled_dataset(Path(str(path+'validation_datasets/')))[:, :-1]
-    y_val = generate_labelled_dataset(Path(str(path+'validation_datasets/')))[:, -1]
+        or not to save the model as a .pkl file.
+        
+    Parameters
+    ----------
+    output_file_path : str
+        Contains the path to the folder where the datasets and model(s) will be stored.
+    """
+    perturbed_path, validation_path = Path(output_file_path+"perturbed_datasets/"), Path(output_file_path+"validation_datasets/")
+    training_dataset = generate_labelled_dataset(perturbed_path)
+    validation_dataset = generate_labelled_dataset(validation_path)
+
+    paths = {perturbed_path: training_dataset, validation_path: validation_dataset}
+    for path in paths:
+        for folder in path.iterdir():
+            if folder.is_dir():
+                shutil.rmtree(folder)
+        dataset = paths[path]
+        np.savetxt(path/"labelled_dataset.txt", dataset, fmt="%d", delimiter=",")
+    
+    X_train, y_train, X_val, y_val = training_dataset[:, :-1], training_dataset[:, -1], validation_dataset[:, :-1], validation_dataset[:, -1]  
 
     rf_classifier = RandomForestClassifier(n_estimators=100, random_state=42)
     rf_classifier.fit(X_train, y_train)
@@ -515,8 +561,7 @@ def model(path, filename):
         save_model = input("Save model? (Y/N) ")
         
     if save_model.lower() == "y":
-        model_filename = str(filename).replace('.i', '')
-        joblib.dump(rf_classifier, str(path)+model_filename+'_model.pkl')
+        joblib.dump(rf_classifier, str(output_file_path)+'model.pkl')
 
 
 def main():
@@ -525,31 +570,31 @@ def main():
     Raises
     ------
     FileNotFoundError
-        If the file submission window is closed (instead of submitting path and filename)
+        If the file submission window is closed (instead of submitting file paths)
     ValueError
-        If the input file is improperly format and no parameters are found as expected
+        If the input file is improperly formatted and no parameters are found as expected
     ValueError
         If the parameter submission window is closed (instead of submitting parameter data)
     """
-    path, filename = accept_file()
+    input_file_path, output_file_path = accept_file()
 
-    if path == None or filename == None:
-        raise FileNotFoundError(f"Specified path and/or input file name not found. Exiting.")
+    if input_file_path == None or output_file_path == None:
+        raise FileNotFoundError(f"Specified input and/or output file path not found. Exiting.")
 
-    moose_runner, moose_modifier = setup_moose_runner(path, filename)
+    moose_runner, moose_modifier = setup_moose_runner(input_file_path)
 
     found_vars = moose_modifier.get_vars()
     if len(found_vars) == 0:
         raise ValueError(f"No parameters found in input file. Check input file and try again.")
     else:
-        parameters = accept_parameters(found_vars)
+        num_validation_values, parameters = accept_parameters(found_vars)
 
     if parameters == None:
         raise ValueError(f"Unacceptable parameters. Exiting.")
 
-    generate_datasets(path, parameters, moose_runner, moose_modifier)
+    generate_datasets(output_file_path, parameters, num_validation_values, moose_runner, moose_modifier)
 
-    model(path, filename)
+    model(output_file_path)
 
 
 if __name__ == "__main__":
@@ -557,7 +602,7 @@ if __name__ == "__main__":
 
 
 # Next steps:  
-    # Refactor to OOP and restructure for project layout
+    # Refactor to OOP
     # Test suite using PyTest (develop as you go)
     # Improve binary classifier by:
         # Allow choice of modelling frameworks - modelling class
@@ -568,3 +613,4 @@ if __name__ == "__main__":
     # Examples + tutorials
     # Packaging for pip distribution
     # Stretch goal: more complex input files, e.g. 3D monoblock
+    
