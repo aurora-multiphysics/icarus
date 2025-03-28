@@ -6,7 +6,7 @@ class UserInterface:
         pass
 
 
-    def accept_file(self, default_input_path="", default_output_path=""):
+    def accept_file(default_input_path: str="", default_output_path: str="") -> tuple[str, str]:
         """accept_file: used to allow user to input path to input file and input file name
             via a tkinter user interface
 
@@ -34,7 +34,7 @@ class UserInterface:
                 input_file_path = str(input_file_path_entry.get())
                 output_file_path = str(output_file_path_entry.get())
 
-                if not Path(input_file_path).exists() or not Path (output_file_path).exists():
+                if not Path(input_file_path).exists() or not Path(output_file_path).exists():
                     if input_file_path[-2:] != ".i":
                         raise FileNotFoundError(f"Specified input and/or output file path not found.")
                 
@@ -68,20 +68,22 @@ class UserInterface:
         return input_file_path, output_file_path
 
 
-    def accept_parameters(self, parameters):
+    def accept_parameters(self, parameters: dict[str, float]) -> tuple[list[int], dict[str, list[float]]]:
         """accept_parameters: used to allow user to select which parameters to perturb, and the range,
             interval of perturbation values, and number of validation values to be used for each parameter.
 
         Parameters
         ----------
-        parameters : dict{str : float}
+        parameters : dict[str, float]
             Dictionary of parameter names and their corresponding values in the default input file.
             Used to allow users to select which parameters to modify, and show them the default
             values so they don't include them again.
 
         Returns
         ----------
-        parameters : dict{str : list[float]}
+        num_val_values : list[int]
+            Number of validation values to use for each parameter
+        parameters : dict[str, list[float]]
             Dictionary of parameter names and their corresponding list of values for perturbation.
         """
 
@@ -187,7 +189,7 @@ class UserInterface:
             min_val_entry.grid(row=i+1, column=3, padx=5, pady=5)
 
             row['max_val'] = StringVar(value=param['max_val'])
-            max_val_entry = Entry(table_frame, textvariable=row['max_val'], width=10)
+            max_val_entry = Entry(table_frame, textvariable=row['max_val'], width=10) 
             max_val_entry.grid(row=i+1, column=4, padx=5, pady=5)
 
             row['interval'] = StringVar(value=param['interval'])

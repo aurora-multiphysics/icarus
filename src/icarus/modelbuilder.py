@@ -9,9 +9,9 @@ import shutil
 
 class ModelBuilder:
     def __init__(self):
-        pass
+        pass 
 
-    def generate_labelled_dataset(self, folder_path):
+    def generate_labelled_dataset(self, folder_path: Path) -> list[list[list[float], int]]:
         """generate_labelled_dataset: used to create a dataset by extracting values from the outputs
             of each run, using ExodusReader class to read the data and PyVale to create an array
             of sensors used to extract measurements of the required field at given points.
@@ -69,7 +69,7 @@ class ModelBuilder:
         return labelled_dataset
 
 
-    def model(self, output_file_path):
+    def model(self, output_file_path: str) -> None:
         """model: used to train the Random Forest model on the training datasets, use the model 
             to make predictions for the validation dataset, and verify the accuracy of the model. 
             Outputs the pertinent information to the user, and then allows them to decide whether 

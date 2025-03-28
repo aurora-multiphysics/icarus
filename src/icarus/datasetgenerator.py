@@ -3,17 +3,24 @@ import math
 from pathlib import Path
 from icarus import MooseSetup
 from mooseherder import (MooseHerd,
-                         SweepReader)
+                         MooseRunner,
+                         InputModifier,
+                         DirectoryManager,
+                         SweepReader) 
 
 class DatasetGenerator:
-    def __init__(self, moose_runner, moose_modifier):
+    def __init__(self, moose_runner, moose_modifier, parameters, num_para_runs=2):
         self.moose_runner = moose_runner
         self.moose_modifier = moose_modifier
+        self.parameters = parameters
+        self.param_names = [[key] for key in parameters.keys()]
+        self.param_values = [[value] for value in parameters.values()]
+        self.num_para_runs = num_para_runs
     
-    def generate_ground_truths(self, moose_runner, moose_modifier, base_dir, num_ground_truths):
+    def generate_ground_truths(self, base_dir: Path, num_ground_truths: list[int]) -> None:
         """generate_ground_truths: used to generate the ground truth by running the input file
             with no modifications, and save the results to the required base_dir under the 
-            sub_dir_name "ground_truth". Creates 1 ground_truth dataset for every 5 perturbed 
+            sub_dir_name "ground_truth". Creates 1 ground_truth dataset for every 3 perturbed 
             datasets
 
         Parameters
@@ -27,17 +34,17 @@ class DatasetGenerator:
         base_dir : Path
             Contains the base directory to save ground_truth sub-directory for running the 
             simulations. 
-        num_ground_truth : list[float]
+        num_ground_truth : list[int]
             Number of ground_truth datasets to generate.
         """
         moose_vars = list([])
         dir_manager = MooseSetup.setup_directory_manager(base_dir, 'ground_truth', num_ground_truths)
         for i in range(num_ground_truths):
             moose_vars.append([{}])
-        self.run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, num_ground_truths)
+        self.run_herd(dir_manager, moose_vars, num_ground_truths)
 
 
-    def generate_dataset(self, moose_runner, moose_modifier, base_dir, param_names, param_values):
+    def generate_dataset(self, base_dir: Path, param_names, param_values) -> None:
         """generate_dataset: used to generate the perturbed and validation datasets by running the 
             input file with modifications to specified parameter(s), and save the results to the 
             required base_dir under a sub_dir_named for the perturbed parameter.
@@ -65,10 +72,10 @@ class DatasetGenerator:
         dir_manager = MooseSetup.setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
         for param in param_values[0]:
             moose_vars.append([{str(param_names[0]): param}]) 
-        self.run_herd(moose_runner, moose_modifier, dir_manager, moose_vars, n_dirs)
+        self.run_herd(dir_manager, moose_vars, n_dirs)
 
 
-    def generate_validation_values(self, param_values, num_validation_values=2):
+    def generate_validation_values(self, param_values, num_validation_values: int=2) -> list[list[float]]:
         """generate_validation_values: used to generate a specified number of validation values 
             for the selected parameter, so that the model can be tested to see if it can correctly
             determine when the parameter has been perturbed to a value that was not present in the 
@@ -89,11 +96,14 @@ class DatasetGenerator:
             under validation_datasets/param_name
         """
         validation_values = [[]]
+
+        flattened = [val for sublist in param_values for val in sublist]
+        min_val = min(flattened)
+        max_val = max(flattened)
         for i in range(num_validation_values):
             distinct_val = False
             while not distinct_val:
-                validation_value = random.uniform(min([val for sublist in param_values for val in sublist]),
-                                                max([val for sublist in param_values for val in sublist]))
+                validation_value = random.uniform(min_val, max_val)
                 if validation_value not in param_values and validation_value not in validation_values:
                     distinct_val = True
             validation_values[0].append(validation_value)  
@@ -101,7 +111,7 @@ class DatasetGenerator:
         return validation_values
 
 
-    def generate_datasets(self, output_file_path, parameters, num_validation_values, moose_runner, moose_modifier):
+    def generate_datasets(self, output_file_path: str, num_validation_values: int) -> None:
         """generate_datasets: used to generate the unlabelled ground truth, perturbed, and 
             validation datasets by running the required functions with the necessary parameter
             names and values, and save paths.
@@ -120,27 +130,25 @@ class DatasetGenerator:
             character. Variable definition blocks should begin #comment character#* and end 
             #comment character#**, e.g. #_* and #** for moose.
         """
-        param_names = [[key] for key in parameters.keys()]
-        param_values = [[value] for value in parameters.values()]
-
         perturbed_path, perturbed_vals = Path(str(output_file_path+"perturbed_datasets/")), None
         validation_path, validation_vals = Path(str(output_file_path+"validation_datasets/")), None
-        paths = {perturbed_path : perturbed_vals, validation_path: validation_vals}
+        paths = {perturbed_path: perturbed_vals, validation_path: validation_vals}
 
-        for i in range(len(param_names)):
-            validation_values = self.generate_validation_values(param_values[i], num_validation_values[i])
-            paths[perturbed_path] = param_values[i]
+        for i in range(len(self.param_names)):
+            validation_values = self.generate_validation_values(self.param_values[i], num_validation_values[i])
+            paths[perturbed_path] = self.param_values[i]
             paths[validation_path] = validation_values
             for path, values in paths.items():
-                self.generate_dataset(moose_runner, moose_modifier, path, param_names[i], values)
+                self.generate_dataset(path, self.param_names[i], values)
 
         for path in paths.keys():
             num_datasets = sum(1 for d in path.iterdir() if d.is_dir())
             num_ground_truths = math.ceil(num_datasets/3)
-            self.generate_ground_truths(moose_runner, moose_modifier, path, num_ground_truths)
+            self.generate_ground_truths(path, num_ground_truths)
 
 
-    def run_herd(self, moose_runner, moose_modifier, dir_manager, moose_vars, n_para=1, keep_flag=False):
+    def run_herd(self,  dir_manager: DirectoryManager, 
+                 moose_vars: list[InputModifier], n_para: int=1, keep_flag: bool=False) -> None:
         """run_herd: used to run parametric sweeps of simulation chains in
             parallel with configurable parallelisation options. Takes a list of
             SimRunner objects and a corresponding list of InputModifiers to insert the
@@ -173,10 +181,10 @@ class DatasetGenerator:
             overwrite each time, by default False - overwrite inputs and outputs with multiple calls
         """
         
-        herd = MooseHerd([moose_runner], [moose_modifier], dir_manager)
+        herd = MooseHerd([self.moose_runner], [self.moose_modifier], dir_manager)
         herd.set_num_para_sims(n_para=n_para)
         herd.set_keep_flag(keep_flag)
-        for _ in range(NUM_PARA_RUNS=2):
+        for _ in range(self.num_para_runs):
             herd.run_para(moose_vars)
 
         sweep_reader = SweepReader(dir_manager, num_para_read=4)

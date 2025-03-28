@@ -15,26 +15,26 @@ def main():
     ValueError
         If the parameter submission window is closed (instead of submitting parameter data)
     """
-    input_file_path, output_file_path = UserInterface.accept_file("scripts/moose/plate_2d_thermal.i", 
-                                                                  "examples/example_outputs/ex1_outputs")
+    input_file_path, output_file_path = UserInterface.accept_file(default_input_path="scripts/moose/plate_2d_thermal.i", 
+                                                                  default_output_path="examples/example_outputs/ex1_outputs/")
 
     if input_file_path == None or output_file_path == None:
         raise FileNotFoundError(f"Specified input and/or output file path not found. Exiting.")
 
-    moose_runner, moose_modifier = MooseSetup.setup_moose_runner(input_file_path)
+    moose_runner, moose_modifier = MooseSetup(input_file_path).setup_moose_runner()
 
     found_vars = moose_modifier.get_vars()
     if len(found_vars) == 0:
         raise ValueError(f"No parameters found in input file. Check input file and try again.")
     else:
-        num_validation_values, parameters = UserInterface.accept_parameters(found_vars)
+        num_validation_values, parameters = UserInterface().accept_parameters(found_vars)
 
     if parameters == None:
         raise ValueError(f"Unacceptable parameters. Exiting.")
 
-    DatasetGenerator.generate_datasets(output_file_path, parameters, num_validation_values, moose_runner, moose_modifier)
+    DatasetGenerator(moose_runner, moose_modifier, parameters).generate_datasets(output_file_path, num_validation_values)
 
-    ModelBuilder.model(output_file_path)
+    ModelBuilder().model(output_file_path)
 
 
 if __name__ == "__main__":
@@ -42,7 +42,6 @@ if __name__ == "__main__":
 
 
 # Next steps:  
-    # Refactor to OOP
     # Test suite using PyTest (develop as you go)
     # Improve binary classifier by:
         # Allow choice of modelling frameworks - modelling class

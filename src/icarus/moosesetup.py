@@ -5,12 +5,11 @@ from mooseherder import (MooseRunner,
                          DirectoryManager)
 
 class MooseSetup:
-    def __init__(self, input_file_path, output_file_path):
+    def __init__(self, input_file_path: str) -> None:
         self.input_file_path = input_file_path
-        self.output_file_path = output_file_path
-        self.moose_runner, self.moose_modifier = self.setup_moose_runner(input_file_path)
+        self.moose_runner, self.moose_modifier = self.setup_moose_runner()
 
-    def setup_moose_runner(self, input_file_path):
+    def setup_moose_runner(self) -> tuple[MooseRunner, InputModifier]:
         """setup_moose_runner: Constructor for MOOSE runner taking a MooseConfig object
             that contains the paths to the main MOOSE install, the MOOSE app and
             the MOOSE app name. Sets parallelisation options to 1 task
@@ -19,7 +18,7 @@ class MooseSetup:
         Parameters
         ----------
         input_file_path : str
-            Contains the path to the  input file.
+            Contains the path to the input file.
 
         Returns
         -------
@@ -31,15 +30,16 @@ class MooseSetup:
             #comment character#* and end #comment character#**, e.g. #_* and #** for
             moose.
         """
-        moose_input = Path(str(input_file_path))
+        moose_input = Path(self.input_file_path)
         moose_modifier = InputModifier(moose_input, '#', '')
         moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
         moose_runner = MooseRunner(moose_config)
         moose_runner.set_run_opts(n_tasks=1, n_threads=2, redirect_out=False)
+
         return moose_runner, moose_modifier
 
-
-    def setup_directory_manager(self, base_dir, sub_dir_name, n_dirs = 1):
+    @staticmethod
+    def setup_directory_manager(base_dir: str, sub_dir_name: str, n_dirs: int=1) -> DirectoryManager:
         """setup_directory_manager: sets up directory manager to manage directories for running 
             simulations in parallel with the mooseherd. Clears existing directories and creates 
             specified new ones with given names
@@ -66,4 +66,5 @@ class MooseSetup:
         dir_manager.set_sub_dir_name(sub_dir_name)
         dir_manager.clear_dirs()
         dir_manager.create_dirs()
+
         return dir_manager
