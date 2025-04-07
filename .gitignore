@@ -1,4 +1,5 @@
 .libs
+dependencies/pyvale
 *.la
 *.lo
 *.d
@@ -71,6 +72,8 @@ temp_print_trace.*
 *.outp
 *.patch
 *.txt
+!labelled_dataset.txt
+!requirements.txt
 *.bib.bak
 *.out
 *.vtk
