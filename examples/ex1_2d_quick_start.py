@@ -1,0 +1,71 @@
+from icarus import (DatasetGenerator,
+                    ModelBuilder,
+                    MooseSetup,
+                    UserInterface)
+
+def main():
+    """main: runs all of the other functions.
+    """
+    # Required parameters - change to desired values
+    # Input and output paths
+    input_file_path = "scripts/moose/plate_2d_thermal.i"
+    output_file_path = "examples/example_outputs/ex1_outputs/" 
+    # Parallelisation options
+    n_tasks, n_threads = 1, 2
+    num_para_runs = 2
+    # Ratio of invalid:valid datasets in training data
+    ground_truths_per_dataset = 3
+
+    # Modelling parameters - change to desired values:
+    # Modelling framework:
+        # rf = Random Forest
+        # svm = Support Vector Machine
+        # dt = Decision Tree
+    framework = "rf"
+    # Analysis field (temperature, displacement, or strain)
+    field_key = "temperature"
+    # Sensor arrangement (x_sensors, y_sensors, z_sensors)
+    sensors = (3,2,1)
+    # Number of spatial dimensions being used 
+    dims = 2
+    # Whether the sensors should include basic errors or not
+    errors = False
+    # Whether the model should be a multi-classifier rather than binary, so it can 
+    # distinguish between perturbations to different classes of invalid parameters 
+    # (geometry, BCs, material properties) rather than just valid and invalid results
+    multi = True 
+    # Whether the unlabelled data should be deleted 
+    delete_datasets = True
+    # Whether the model should be saved as a .pkl file
+    save = False
+
+    # Setup MOOSE aspects of Icarus
+    moose_setup = MooseSetup(input_file_path, n_tasks=n_tasks, n_threads=n_threads)
+    moose_runner, moose_modifier = moose_setup.setup_moose_runner()
+
+    # Accesses the available parameters and allow user to select which are perturbed, what
+    # values they should take, and how many validation values to use for each
+    found_vars = moose_modifier.get_vars()
+    num_validation_values, parameters = UserInterface().accept_parameters(found_vars)
+    
+    # Initialise dataset generator and generate perturbed, validation and ground truths datasets
+    dataset_generator = DatasetGenerator(moose_runner, moose_modifier, parameters, output_file_path, num_para_runs)
+    dataset_generator.generate_datasets(num_validation_values, ground_truths_per_dataset)
+
+    # Sets up, runs, and (optionally) saves the chosen model:
+    model = ModelBuilder(output_file_path, framework, field_key, sensors, dims, errors, multi, delete_datasets, save)
+    model.run_model()
+    
+if __name__ == "__main__":
+    main()
+
+# Next steps:  
+    # Test suite using PyTest
+    # Optimise usability and structure of classes/dicts/input files, etc
+    # Improve classifiers
+    # Allow user control of hyperparameters
+    # Fully configureable example (decoupled steps)
+    # Stretch goals: 
+        # More complex input files, e.g. 3D monoblock
+        # Accepting multiple simultaneous perturbations - generate datasets class
+        # Allowing user to define sensor positions - labelled dataset function
