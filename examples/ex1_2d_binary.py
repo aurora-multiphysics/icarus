@@ -86,9 +86,11 @@ if __name__ == "__main__":
 
 
 # Next steps:  
-    # Test suite using PyTest (develop as you go)
-    # Expand to multi-classifier
-    # Fully configureable example
+    # Test suite using PyTest
+    # Optimise usability and structure of classes/dicts/input files, etc
+    # Improve classifiers
+    # Allow user control of hyperparameters
+    # Fully configureable example (decoupled steps)
     # Stretch goals: 
         # More complex input files, e.g. 3D monoblock
         # Accepting multiple simultaneous perturbations - generate datasets class
