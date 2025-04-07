@@ -1,5 +1,4 @@
 .libs
-dependencies/pyvale
 *.la
 *.lo
 *.d
