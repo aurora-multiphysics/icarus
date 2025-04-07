@@ -17,7 +17,7 @@ class DatasetGenerator:
         [[{param_name: [param_values]}], [{param_name: param_values}], ...] for each parameter.
     """
     def __init__(self, moose_runner: MooseRunner, moose_modifier: InputModifier, 
-                 parameters: dict[str, list], num_para_runs: int=2) -> None:
+                 parameters: dict[str, list], output_file_path: str, num_para_runs: int=2) -> None:
         """__init__
 
         Parameters
@@ -32,16 +32,37 @@ class DatasetGenerator:
         parameters : dict[str, list]
             Dictionary containing the name of the parameter and the list of values for
             that parameter to take for each simulation to be run.
+        output_file_path : str
+            Contains the path to the folder where the datasets and model(s) will be stored.
         num_para_runs : int, optional
             Number of parallel runs for running the simulations, by default 2.
+
+        Raises 
+        ----------
+        ValueError
+            If there are no parameters entered.
+        FileNotFoundError
+            If any of the required output file paths don't exist.
         """
         self.moose_runner = moose_runner
         self.moose_modifier = moose_modifier
         self.num_para_runs = num_para_runs
+
+        if parameters == None or len(parameters) == 0:            
+            raise ValueError(f"Unacceptable parameters. Exiting.")
+        
         self.parameters = parameters
         self.param_names = [key for key in parameters.keys()]
         self.param_classes = [value[0] for value in parameters.values()]
         self.param_values = [value[1] for value in parameters.values()]
+
+        if not Path(output_file_path).exists() or \
+            not Path(str(output_file_path+"perturbed_datasets/")).exists() or \
+            not Path(str(output_file_path+"validation_datasets/")).exists():
+            raise FileNotFoundError(f"At least one required output file path not found. Exiting.")
+        
+        self.output_file_path = output_file_path 
+    
     
     def generate_ground_truths(self, base_dir: Path, num_ground_truths: list[int]) -> None:
         """generate_ground_truths: used to generate the ground truth by running the input file
@@ -56,6 +77,8 @@ class DatasetGenerator:
         num_ground_truths : list[int]
             Number of ground_truth datasets to generate.
         """
+        if num_ground_truths <= 0:
+            raise ValueError(f"Some ground truths must be generated. Exiting.")
         dir_manager = MooseSetup.setup_directory_manager(base_dir, 'ground_truth', num_ground_truths)
         moose_vars = [[{}]] * num_ground_truths
         self.run_herd(dir_manager, moose_vars, num_ground_truths)
@@ -119,20 +142,19 @@ class DatasetGenerator:
         return validation_values
 
 
-    def generate_datasets(self, output_file_path: str, num_validation_values: list[int], ground_truths_per_dataset: int) -> None:
+    def generate_datasets(self, num_validation_values: list[int], ground_truths_per_dataset: int) -> None:
         """generate_datasets: convenience function  to run all aspects of the DatasetGenerator class.
 
         Parameters
         ----------
-        output_file_path : str
-            Contains the path to the folder where the datasets and model(s) will be stored.
         num_validation_values : list[int]
             Contains a list of the number of validation datasets to generate for each parameter
         ground_truth_per_dataset : int
             Contains the number of ground truth datasets to include per perturbed dataset
         """
-        perturbed_path, perturbed_vals = Path(str(output_file_path+"perturbed_datasets/")), None
-        validation_path, validation_vals = Path(str(output_file_path+"validation_datasets/")), None
+        perturbed_path, perturbed_vals = Path(str(self.output_file_path+"perturbed_datasets/")), None
+        validation_path, validation_vals = Path(str(self.output_file_path+"validation_datasets/")), None
+        
         paths = {perturbed_path: perturbed_vals, validation_path: validation_vals}
 
         for name, param_class, values, n_valid in zip(self.param_names, self.param_classes, self.param_values, num_validation_values):

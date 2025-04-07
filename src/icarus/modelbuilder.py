@@ -18,7 +18,8 @@ class ModelBuilder:
         and to delete unlabelled datasets
     """
     def __init__(self, output_file_path: str, framework: str, field_key: str="temperature", 
-                 sensors: list=[3,2,1], dims: int=2, errors: bool=False, multi: bool=False):
+                 sensors: list=[3,2,1], dims: int=2, errors: bool=False, multi: bool=False,
+                 delete_datasets: bool=False, save: bool=False) -> None:
         """__init__
 
         Parameters
@@ -40,14 +41,60 @@ class ModelBuilder:
         multi : bool, optional
             Allows the user to specify whether to use a multi-classifier, by default
             False (meaning use a binary classifier).
+        delete_datasets : bool
+            Allows the user to determine whether or not to delete the unlabelled datasets.
+        save : bool
+            Allows the user to determine whether or not to save the model.
+
+        Raises
+        ----------
+        FileNotFoundError
+            If any of the required output file paths don't exist.
+        ValueError
+            If any of framework, field_key, sensors, dims, errors, multi, delete_datasets, or save
+            are unacceptable.
         """
+        if not Path(output_file_path).exists() or \
+            not Path(str(output_file_path+"perturbed_datasets/")).exists() or \
+            not Path(str(output_file_path+"validation_datasets/")).exists():
+            raise FileNotFoundError(f"At least one required output file path not found. Exiting.")
         self.output_file_path = output_file_path 
+
+        if framework not in ["rf", "svm", "dt"]:
+            raise ValueError(f"Invalid framework {framework}. Exiting.")
         self.framework = framework
+
+        if field_key not in ["temperature", "displacement", "strain"]:
+            raise ValueError(f"Unacceptable field key {field_key}. Exiting.")
         self.field_key = field_key
+
+        for sensor in sensors:
+            if sensor == 0:
+                raise ValueError("Invalid sensor array {sensors}. Exiting.")
+        if len(sensors) != 3 or sensors == None:
+            raise ValueError("Invalid sensor array {sensors}. Exiting.")           
         self.sensors = sensors
+
+        if dims not in [1, 2, 3]:
+            raise ValueError(f"Dimensions must be 1, 2 or 3, not {dims}. Exiting.")
         self.dims = dims
+
+        if errors not in [True, False]:
+            raise ValueError(f"Errors must be either True or False, not {errors}. Exiting.")
         self.errors = errors
+
+        if multi not in [True, False]:
+            raise ValueError(f"Multi must be either True or False, not {multi}. Exiting.")
         self.multi = multi
+
+        if delete_datasets not in [True, False]:
+            raise ValueError(f"Delete datasets must be either True or False, not {delete_datasets}. Exiting.")
+        self.delete_datasets = delete_datasets
+
+        if save not in [True, False]:
+            raise ValueError(f"Save must be either True or False, not {save}. Exiting.")
+        self.save = save
+
         self.labelled_dataset_cols = (sensors[0]*sensors[1]*sensors[2])+1
 
 
@@ -119,8 +166,13 @@ class ModelBuilder:
             labelled dataset should be extracted. Should be the base directory - i.e. either 
             perturbed_datasets/ or validation_datasets/.
 
+        Raises 
+        ----------
+        ValueError
+            If the training and/or validation datasets failed to generate.
+
         Returns
-        -------
+        ----------
         labelled_dataset: np.array[np.array[list[float], int]]
             2D array containing the list of extracted measurements for each dataset and its 
             corresponding label. To be used to train/validate the model.
@@ -146,7 +198,10 @@ class ModelBuilder:
             measurements = np.append(measurements, label) 
             labelled_dataset = np.vstack([labelled_dataset, measurements]) 
 
-        return labelled_dataset
+        if len(labelled_dataset) <= 1:
+            raise ValueError(f"Training and/or validation datasets failed to generate. Exiting.")
+        else:
+            return labelled_dataset
     
 
     def delete_data(self, perturbed_path: Path, training_dataset: list[list[list[float],int]], 
@@ -199,10 +254,11 @@ class ModelBuilder:
         for classifier_framework, classifier_function in classifiers.items():
             if self.framework == classifier_framework:
                 classifier = classifier_function
-                
+
         classifier.fit(X_train, y_train)
 
         return classifier
+    
 
     def output_model_metrics(self, y_val: list[float], y_pred: list[float]) -> None:
         """output_model_metrics: prints the actual + predicted labels, as well as the final
@@ -222,7 +278,7 @@ class ModelBuilder:
         print(f"Validation Accuracy: {val_accuracy * 100:.2f}%")
 
     
-    def save_model(self, classifier: RandomForestClassifier) -> None:
+    def save_model(self, classifier: RandomForestClassifier | SVC | DecisionTreeClassifier) -> None:
         """save_model: used to save the model as a .pkl file
 
         Parameters
@@ -233,13 +289,8 @@ class ModelBuilder:
         joblib.dump(classifier, str(self.output_file_path)+str(self.framework)+'_model.pkl')
 
 
-    def run_model(self, delete_datasets: bool=True) -> RandomForestClassifier:
+    def run_model(self) -> RandomForestClassifier | SVC | DecisionTreeClassifier:
         """run_model: Convenience function to run all aspects of the ModelBuilder class.
-            
-        Parameters
-        ----------
-        delete_datasets : bool
-            Allows the user to determine whether or not to delete the unlabelled datasets.
         
         Returns 
         ----------
@@ -247,10 +298,11 @@ class ModelBuilder:
             The classifier model itself.
         """
         perturbed_path, validation_path = Path(self.output_file_path+"perturbed_datasets/"), Path(self.output_file_path+"validation_datasets/")
+        
         training_dataset = self.generate_labelled_dataset(perturbed_path)
         validation_dataset = self.generate_labelled_dataset(validation_path)
 
-        if delete_datasets:
+        if self.delete_datasets:
             self.delete_data(perturbed_path, training_dataset, validation_path, validation_dataset)
         
         X_train, y_train, X_val, y_val = training_dataset[:, :-1], training_dataset[:, -1], validation_dataset[:, :-1], validation_dataset[:, -1]
@@ -259,5 +311,8 @@ class ModelBuilder:
         y_pred = classifier.predict(X_val)
         
         self.output_model_metrics(y_val, y_pred)
+
+        if self.save:
+            self.save_model(classifier)
 
         return classifier

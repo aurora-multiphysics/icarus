@@ -24,13 +24,22 @@ class MooseSetup:
         self.n_tasks, self.n_threads = n_tasks, n_threads
         self.moose_runner, self.moose_modifier = self.setup_moose_runner()
 
+
     def setup_moose_runner(self) -> tuple[MooseRunner, InputModifier]:
         """setup_moose_runner: Constructor for MOOSE runner taking a MooseConfig object
             that contains the paths to the main MOOSE install, the MOOSE app and
             the MOOSE app name.
 
+        Raises
+        ----------
+        FileNotFoundError
+            If the input file path is unacceptable (not found or not an input file), or if 
+            the moose-config.json file is unacceptable.
+        ValueError
+            If there are no parameters found in the input file.
+
         Returns
-        -------
+        ----------
         moose_runner : MooseRunner
             Constructed MOOSE runner used to run the input file with modified variables 
         moose_modifier : InputModifier
@@ -39,9 +48,23 @@ class MooseSetup:
             #comment character#* and end #comment character#**, e.g. #_* and #** for
             moose.
         """
-        moose_input = Path(self.input_file_path)
+        if self.input_file_path[-2:] != ".i":
+                raise FileNotFoundError(f"Unacceptable input file path.")
+        
+        try:
+            moose_input = Path(self.input_file_path)
+        except FileNotFoundError:
+            raise FileNotFoundError(f"Unacceptable input file path.")
+
         moose_modifier = InputModifier(moose_input, '#', '')
-        moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
+        if len(moose_modifier.get_vars()) == 0:
+            raise ValueError(f"No parameters found in input file. Check input file and try again.")
+
+        try:
+            moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
+        except:
+            raise FileNotFoundError(f"JSON file moose-config.json not found, or points to non-existent MOOSE app.")
+
         moose_runner = MooseRunner(moose_config)
         moose_runner.set_run_opts(n_tasks=self.n_tasks, n_threads=self.n_threads, redirect_out=False)
 
