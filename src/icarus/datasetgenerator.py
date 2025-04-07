@@ -9,73 +9,84 @@ from mooseherder import (MooseHerd,
                          SweepReader) 
 
 class DatasetGenerator:
-    def __init__(self, moose_runner, moose_modifier, parameters, num_para_runs=2):
+    """Used to generate the unlabelled ground truth, perturbed, and 
+        validation datasets by running the required functions with the necessary parameter
+        names and values, and save paths.
+
+        NB: To run the input file, mooseherder requires that the moose_vars be structured as 
+        [[{param_name: [param_values]}], [{param_name: param_values}], ...] for each parameter.
+    """
+    def __init__(self, moose_runner: MooseRunner, moose_modifier: InputModifier, 
+                 parameters: dict[str, list], num_para_runs: int=2) -> None:
+        """__init__
+
+        Parameters
+        ----------
+        moose_runner : MooseRunner
+            Constructed MOOSE runner used to run the input file with modified variables 
+        moose_modifier : InputModifier
+            Used to extract and modify the variables in the input file.
+            Specifies the comment character. Variable definition blocks should begin 
+            #comment character#* and end #comment character#**, e.g. #_* and #** for
+            moose.
+        parameters : dict[str, list]
+            Dictionary containing the name of the parameter and the list of values for
+            that parameter to take for each simulation to be run.
+        num_para_runs : int, optional
+            Number of parallel runs for running the simulations, by default 2.
+        """
         self.moose_runner = moose_runner
         self.moose_modifier = moose_modifier
-        self.parameters = parameters
-        self.param_names = [[key] for key in parameters.keys()]
-        self.param_values = [[value] for value in parameters.values()]
         self.num_para_runs = num_para_runs
+        self.parameters = parameters
+        self.param_names = [key for key in parameters.keys()]
+        self.param_classes = [value[0] for value in parameters.values()]
+        self.param_values = [value[1] for value in parameters.values()]
     
     def generate_ground_truths(self, base_dir: Path, num_ground_truths: list[int]) -> None:
         """generate_ground_truths: used to generate the ground truth by running the input file
             with no modifications, and save the results to the required base_dir under the 
-            sub_dir_name "ground_truth". Creates 1 ground_truth dataset for every 3 perturbed 
-            datasets
+            sub_dir_name "ground_truth". Creates a specified number of ground_truth datasets
 
         Parameters
         ----------
-        moose_runner : MooseRunner
-            Constructed MOOSE runner used to run the input file with modified variables. 
-        moose_modifier : InputModifier
-            Used to extract and modify the variables in the input file. Specifies the comment 
-            character. Variable definition blocks should begin #comment character#* and end 
-            #comment character#**, e.g. #_* and #** for moose.
         base_dir : Path
             Contains the base directory to save ground_truth sub-directory for running the 
             simulations. 
-        num_ground_truth : list[int]
+        num_ground_truths : list[int]
             Number of ground_truth datasets to generate.
         """
-        moose_vars = list([])
         dir_manager = MooseSetup.setup_directory_manager(base_dir, 'ground_truth', num_ground_truths)
-        for i in range(num_ground_truths):
-            moose_vars.append([{}])
+        moose_vars = [[{}]] * num_ground_truths
         self.run_herd(dir_manager, moose_vars, num_ground_truths)
 
 
-    def generate_dataset(self, base_dir: Path, param_names, param_values) -> None:
+    def generate_dataset(self, base_dir: Path, param_name: str, param_class: str, param_values: list[float]) -> None:
         """generate_dataset: used to generate the perturbed and validation datasets by running the 
-            input file with modifications to specified parameter(s), and save the results to the 
+            input file with modifications to specified parameter, and save the results to the 
             required base_dir under a sub_dir_named for the perturbed parameter.
 
         Parameters
         ----------
-        moose_runner : MooseRunner
-            Constructed MOOSE runner used to run the input file with modified variables. 
-        moose_modifier : InputModifier
-            Used to extract and modify the variables in the input file. Specifies the comment 
-            character. Variable definition blocks should begin #comment character#* and end 
-            #comment character#**, e.g. #_* and #** for moose.
         base_dir : Path
             Contains the base directory to save perturbed_param sub-directory for running the 
             simulations. 
-        param_names : list[string]
-            List of the names of the perturbed parameters.
+        param_name : str
+            The name of the perturbed parameter.
+        param_class : str
+            The class of the perturbed parameter (geometry, BC or material property).
         param_values : list[float]
-            List of values for the currently selected parameter(s).
+            List of values for the currently selected parameter.
         """
-        moose_vars = list([])
-        n_dirs = 1
-        for i in range(len(param_names)):
-            n_dirs *= len(param_values[i])
-        dir_manager = MooseSetup.setup_directory_manager(base_dir, str(param_names[0]), n_dirs)
-        for param in param_values[0]:
-            moose_vars.append([{str(param_names[0]): param}]) 
+        moose_vars = []
+        n_dirs = len(param_values)
+        dir_manager = MooseSetup.setup_directory_manager(base_dir, str(f"{param_class}_{param_name}"), n_dirs)
+        for param in param_values:
+            moose_vars.append([{str(param_name): param}])
         self.run_herd(dir_manager, moose_vars, n_dirs)
 
 
-    def generate_validation_values(self, param_values, num_validation_values: int=2) -> list[list[float]]:
+    def generate_validation_values(self, param_values: list[float], num_validation_values: int=2) -> list[float]:
         """generate_validation_values: used to generate a specified number of validation values 
             for the selected parameter, so that the model can be tested to see if it can correctly
             determine when the parameter has been perturbed to a value that was not present in the 
@@ -90,65 +101,57 @@ class DatasetGenerator:
 
         Returns
         -------
-        validation_values : list[list[float]]
+        validation_values : list[float]
             List containing a list(s) of validation values for each parameter, to be used to
             determine the value of the InputModifier for that parameter for the run to be saved
             under validation_datasets/param_name
         """
-        validation_values = [[]]
+        validation_values = []
 
-        flattened = [val for sublist in param_values for val in sublist]
-        min_val = min(flattened)
-        max_val = max(flattened)
-        for i in range(num_validation_values):
-            distinct_val = False
-            while not distinct_val:
-                validation_value = random.uniform(min_val, max_val)
-                if validation_value not in param_values and validation_value not in validation_values:
-                    distinct_val = True
-            validation_values[0].append(validation_value)  
+        min_val = min(param_values)
+        max_val = max(param_values)
+        
+        while len(validation_values) < num_validation_values:
+            validation_value = random.uniform(min_val, max_val)
+            if validation_value not in param_values and validation_value not in validation_values:
+                validation_values.append(validation_value)
 
         return validation_values
 
 
-    def generate_datasets(self, output_file_path: str, num_validation_values: int) -> None:
-        """generate_datasets: used to generate the unlabelled ground truth, perturbed, and 
-            validation datasets by running the required functions with the necessary parameter
-            names and values, and save paths.
+    def generate_datasets(self, output_file_path: str, num_validation_values: list[int], ground_truths_per_dataset: int) -> None:
+        """generate_datasets: convenience function  to run all aspects of the DatasetGenerator class.
 
         Parameters
         ----------
         output_file_path : str
             Contains the path to the folder where the datasets and model(s) will be stored.
-        parameters : dict{str : list[float]}
-            Contains the names of the parameters to be perturbed and the values they should take
-            for each run.
-        moose_runner : MooseRunner
-            Constructed MOOSE runner used to run the input file with modified variables. 
-        moose_modifier : InputModifier
-            Used to extract and modify the variables in the input file. Specifies the comment 
-            character. Variable definition blocks should begin #comment character#* and end 
-            #comment character#**, e.g. #_* and #** for moose.
+        num_validation_values : list[int]
+            Contains a list of the number of validation datasets to generate for each parameter
+        ground_truth_per_dataset : int
+            Contains the number of ground truth datasets to include per perturbed dataset
         """
         perturbed_path, perturbed_vals = Path(str(output_file_path+"perturbed_datasets/")), None
         validation_path, validation_vals = Path(str(output_file_path+"validation_datasets/")), None
         paths = {perturbed_path: perturbed_vals, validation_path: validation_vals}
 
-        for i in range(len(self.param_names)):
-            validation_values = self.generate_validation_values(self.param_values[i], num_validation_values[i])
-            paths[perturbed_path] = self.param_values[i]
+        for name, param_class, values, n_valid in zip(self.param_names, self.param_classes, self.param_values, num_validation_values):
+            validation_values = self.generate_validation_values(values, n_valid)
+            
+            paths[perturbed_path] = values
             paths[validation_path] = validation_values
-            for path, values in paths.items():
-                self.generate_dataset(path, self.param_names[i], values)
+
+            for path, vals in paths.items():
+                self.generate_dataset(path, name, param_class, vals)
 
         for path in paths.keys():
             num_datasets = sum(1 for d in path.iterdir() if d.is_dir())
-            num_ground_truths = math.ceil(num_datasets/3)
+            num_ground_truths = math.ceil(num_datasets/ground_truths_per_dataset)
             self.generate_ground_truths(path, num_ground_truths)
 
 
     def run_herd(self,  dir_manager: DirectoryManager, 
-                 moose_vars: list[InputModifier], n_para: int=1, keep_flag: bool=False) -> None:
+                 moose_vars: InputModifier, n_para: int=1, keep_flag: bool=False) -> None:
         """run_herd: used to run parametric sweeps of simulation chains in
             parallel with configurable parallelisation options. Takes a list of
             SimRunner objects and a corresponding list of InputModifiers to insert the
@@ -157,19 +160,12 @@ class DatasetGenerator:
             DirectoryManager class to log the directories in which each parallel worker is
             creating input files and running simulations. Uses the SweepReader class to read the 
             output from one or more calls to mooseherd.run_para().
-            Has configurable options for reading in the variable sweep in parallel.
 
         Parameters
         ----------
-        moose_runner : MooseRunner
-            Constructed MOOSE runner used to run the input file with modified variables. 
-        moose_modifier : InputModifier
-            Used to extract and modify the variables in the input file. Specifies the comment 
-            character. Variable definition blocks should begin #comment character#* and end 
-            #comment character#**, e.g. #_* and #** for moose.
         dir_manager : DirectoryManager
             Used to control how many and which directories are used to run the simulations.
-        moose_vars : list[InputModifier]
+        moose_vars : InputModifier
             Used to extract and modify the variables in the input file.
             Specifies the comment character. Variable definition blocks should begin 
             #comment character#* and end #comment character#**, e.g. #_* and #** for

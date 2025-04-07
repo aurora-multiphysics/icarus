@@ -2,70 +2,12 @@ from tkinter import Tk, Label, Entry, Button, Frame, Checkbutton, BooleanVar, St
 from pathlib import Path
 
 class UserInterface:
+    """Provides a user interface using tkinter to allow the user to control aspects of the modelling process,
+        including selecting parameters to be perturbed and defining their values and how many validation datasets
+        to generate for each parameter.
+    """
     def __init__(self):
         pass
-
-
-    def accept_file(default_input_path: str="", default_output_path: str="") -> tuple[str, str]:
-        """accept_file: used to allow user to input path to input file and input file name
-            via a tkinter user interface
-
-        Returns
-        -------
-        input_file_path : str
-            String containing the path to the input file inputted to the user interface.
-        output_file_path : str
-            String containing the path for outputs inputted to the user interface.
-        """
-        
-        def submit_file():
-            """submit_file: specifies what should happen when the submit button is pressed.
-                The values within the Entry boxes for input and output file paths should be 
-                saved to their corresponding variables, and the tkinter window should close.
-
-            Raises 
-            ----------
-            FileNotFoundError
-                If the file paths submitted aren't acceptable 
-            """
-            nonlocal input_file_path, output_file_path
-
-            try:
-                input_file_path = str(input_file_path_entry.get())
-                output_file_path = str(output_file_path_entry.get())
-
-                if not Path(input_file_path).exists() or not Path(output_file_path).exists():
-                    if input_file_path[-2:] != ".i":
-                        raise FileNotFoundError(f"Specified input and/or output file path not found.")
-                
-                file_root.quit()
-                file_root.destroy()
-            except FileNotFoundError:
-                error_label.config(text="Specified input and/or output file path not found.", fg="red")
-                return
-
-        input_file_path, output_file_path = None, None
-
-        file_root = Tk()
-
-        Label(file_root, text='Input file path:').grid(row=0)
-        Label(file_root, text='Output file path:').grid(row=1)
-        default_input_path = StringVar(value=default_input_path)
-        input_file_path_entry = Entry(file_root, textvariable=default_input_path, width=30)
-        input_file_path_entry.grid(row=0, column=1)
-        default_output_path = StringVar(value=default_output_path)
-        output_file_path_entry = Entry(file_root, textvariable=default_output_path, width=30)
-        output_file_path_entry.grid(row=1, column=1)
-
-        submit_button = Button(file_root, text="Submit", command=submit_file)
-        submit_button.grid(row=2, column=0, columnspan=2, pady=10)
-
-        error_label = Label(file_root, text="", fg="red")
-        error_label.grid(row=3, column=0, columnspan=2)
-
-        file_root.mainloop()    
-
-        return input_file_path, output_file_path
 
 
     def accept_parameters(self, parameters: dict[str, float]) -> tuple[list[int], dict[str, list[float]]]:
@@ -110,14 +52,21 @@ class UserInterface:
                 if row['checkbox_var'].get():  # Check if checkbox is ticked
                     param_name = row['param_name']
                     try:
+                        param_class = str(row['param_class'].get())
                         default_val = float(row['default_val'])
                         min_val = float(row['min_val'].get())
                         max_val = float(row['max_val'].get())
                         interval = float(row['interval'].get())
                         num_validation_values = int(row['num_validation_values'].get())
 
+                        if param_class.lower() not in ["geom", "bc", "mat_prop"]:
+                            raise ValueError("Invalid parameter classification")
+
                         if min_val >= max_val or interval <= 0:
                             raise ValueError("Invalid range or interval")
+                        
+                        param_data = []
+                        param_data.append(param_class)
 
                         param_values = []
                         current_val = min_val
@@ -132,8 +81,9 @@ class UserInterface:
                         if num_validation_values < 2:
                             raise ValueError("Insufficient validation values")
 
+                        param_data.append(param_values)
                         num_val_values.append(num_validation_values)
-                        parameters[param_name] = param_values
+                        parameters[param_name] = param_data
 
                     except ValueError as e:
                         error_label.config(text=f"Error: {str(e)}", fg="red")
@@ -150,7 +100,7 @@ class UserInterface:
         table_frame = Frame(param_root)
         table_frame.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
 
-        headers = ["Select", "Param Name", "Default Value", "Min Value", "Max Value", "Interval", "No. Validation Values"]
+        headers = ["Select", "Param Name", "Param Class", "Default Value", "Min Value", "Max Value", "Interval", "No. Validation Values"]
         for col, header in enumerate(headers):
             Label(table_frame, text=header).grid(row=0, column=col, padx=5, pady=5)
 
@@ -163,11 +113,11 @@ class UserInterface:
                     x = 10
                 else:
                     x = parameter_value/2
-                params.append({"param_name": parameter_name,"default_val": parameter_value,"min_val": parameter_value+x, 
-                            "max_val": parameter_value+5*x,"interval": x,"num_validation_values":3})
+                params.append({"param_name": parameter_name,"param_class": "geom/bc/mat_prop","default_val": parameter_value,
+                               "min_val": parameter_value+x,"max_val": parameter_value+5*x,"interval": x,"num_validation_values":3})
             except ValueError:
-                params.append({"param_name": parameter_name,"default_val": parameter_value,"min_val": "", 
-                            "max_val": "","interval": "","num_validation_values":""})
+                params.append({"param_name": parameter_name,"param_class": "geom/bc/mat_prop","default_val": parameter_value,
+                               "min_val": "","max_val": "","interval": "","num_validation_values":""})
 
         rows = []
         for i, param in enumerate(params):
@@ -181,24 +131,28 @@ class UserInterface:
             Label(table_frame, text=param['param_name']).grid(row=i+1, column=1, padx=5, pady=5)
             row['param_name'] = param['param_name']
 
-            Label(table_frame, text=param['default_val']).grid(row=i+1, column=2, padx=5, pady=5)
+            row['param_class'] = StringVar(value=param['param_class'])
+            param_class_entry = Entry(table_frame, textvariable=row['param_class'], width=15)
+            param_class_entry.grid(row=i+1, column=2, padx=5, pady=5)
+
+            Label(table_frame, text=param['default_val']).grid(row=i+1, column=3, padx=5, pady=5)
             row['default_val'] = param['default_val']
 
             row['min_val'] = StringVar(value=param['min_val'])
             min_val_entry = Entry(table_frame, textvariable=row['min_val'], width=10)
-            min_val_entry.grid(row=i+1, column=3, padx=5, pady=5)
+            min_val_entry.grid(row=i+1, column=4, padx=5, pady=5)
 
             row['max_val'] = StringVar(value=param['max_val'])
             max_val_entry = Entry(table_frame, textvariable=row['max_val'], width=10) 
-            max_val_entry.grid(row=i+1, column=4, padx=5, pady=5)
+            max_val_entry.grid(row=i+1, column=5, padx=5, pady=5)
 
             row['interval'] = StringVar(value=param['interval'])
             interval_entry = Entry(table_frame, textvariable=row['interval'], width=10)
-            interval_entry.grid(row=i+1, column=5, padx=5, pady=5)
+            interval_entry.grid(row=i+1, column=6, padx=5, pady=5)
 
             row['num_validation_values'] = StringVar(value=param['num_validation_values'])
             num_validation_values_entry = Entry(table_frame, textvariable=row['num_validation_values'], width=10)
-            num_validation_values_entry.grid(row=i+1, column=6, padx=5, pady=5)
+            num_validation_values_entry.grid(row=i+1, column=7, padx=5, pady=5)
 
             rows.append(row)
 

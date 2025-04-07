@@ -5,20 +5,29 @@ from mooseherder import (MooseRunner,
                          DirectoryManager)
 
 class MooseSetup:
-    def __init__(self, input_file_path: str) -> None:
+    """Used to setup the MOOSE Runners and Directory Managers required to run the simulations
+        and generate the datasets.
+    """
+    def __init__(self, input_file_path: str, n_tasks: int, n_threads: int) -> None:
+        """__init__
+
+        Parameters
+        ----------
+        input_file_path : str
+            The path to the input file used.
+        n_tasks : int
+            The number of tasks for parallelisation.
+        n_threads : int
+            The number of threads for parallelisation.
+        """
         self.input_file_path = input_file_path
+        self.n_tasks, self.n_threads = n_tasks, n_threads
         self.moose_runner, self.moose_modifier = self.setup_moose_runner()
 
     def setup_moose_runner(self) -> tuple[MooseRunner, InputModifier]:
         """setup_moose_runner: Constructor for MOOSE runner taking a MooseConfig object
             that contains the paths to the main MOOSE install, the MOOSE app and
-            the MOOSE app name. Sets parallelisation options to 1 task
-            and 2 threads. Sets environment variables required for MPI setup.
-
-        Parameters
-        ----------
-        input_file_path : str
-            Contains the path to the input file.
+            the MOOSE app name.
 
         Returns
         -------
@@ -34,7 +43,7 @@ class MooseSetup:
         moose_modifier = InputModifier(moose_input, '#', '')
         moose_config = MooseConfig().read_config(Path.cwd() / 'moose-config.json')
         moose_runner = MooseRunner(moose_config)
-        moose_runner.set_run_opts(n_tasks=1, n_threads=2, redirect_out=False)
+        moose_runner.set_run_opts(n_tasks=self.n_tasks, n_threads=self.n_threads, redirect_out=False)
 
         return moose_runner, moose_modifier
 
