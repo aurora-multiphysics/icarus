@@ -17,7 +17,7 @@ class ModelBuilder:
         Outputs the pertinent information to the user, and allows the user to save the model,
         and to delete unlabelled datasets
     """
-    def __init__(self, output_file_path: str, framework: str, field_key: str="temperature", 
+    def __init__(self, output_file_path: str, framework: str, sensor_type: str="thermocouples", 
                  sensors: list=[3,2,1], dims: int=2, errors: bool=False, multi: bool=False,
                  delete_datasets: bool=False, save: bool=False) -> None:
         """__init__
@@ -64,9 +64,9 @@ class ModelBuilder:
             raise ValueError(f"Invalid framework {framework}. Exiting.")
         self.framework = framework
 
-        if field_key not in ["temperature", "displacement", "strain"]:
-            raise ValueError(f"Unacceptable field key {field_key}. Exiting.")
-        self.field_key = field_key
+        if sensor_type not in ["thermocouples", "disp_sensors", "strain_gauges"]:
+            raise ValueError(f"Unacceptable sensor type {sensor_type}. Exiting.")
+        self.sensor_type = sensor_type
 
         for sensor in sensors:
             if sensor == 0:
@@ -134,22 +134,16 @@ class ModelBuilder:
         sens_pos = pyvale.create_sensor_pos_array(n_sens,x_lims,y_lims,z_lims)
         sens_data = pyvale.SensorData(positions=sens_pos)
 
-        field_key_map = {
-            "temperature": "thermocouples",
-            "displacement": "disp_sensors",
-            "strain": "strain_gauges"
-        }
-
         errors_map = {
             True: "basic_errs",
             False: "no_errs"
         }
 
-        func_name = f"{field_key_map[self.field_key]}_{errors_map[self.errors]}"
+        func_name = f"{self.sensor_type}_{errors_map[self.errors]}"
         factory = pyvale.SensorArrayFactory
         func = getattr(factory, func_name)
 
-        sens_array = func(sim_data, sens_data, self.field_key, spat_dims=self.dims)
+        sens_array = func(sim_data, sens_data, self.sensor_type, spat_dims=self.dims)
         
         return sens_array
     

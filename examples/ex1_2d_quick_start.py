@@ -22,8 +22,9 @@ def main():
         # svm = Support Vector Machine
         # dt = Decision Tree
     framework = "rf"
-    # Analysis field (temperature, displacement, or strain)
-    field_key = "temperature"
+    # Analysis sensor type 
+    # (thermocouples for temperature, disp_sensors for displacement, or strain_gauges for strain)
+    sensor_type = "thermocouples"
     # Sensor arrangement (x_sensors, y_sensors, z_sensors)
     sensors = (3,2,1)
     # Number of spatial dimensions being used 
@@ -35,7 +36,7 @@ def main():
     # (geometry, BCs, material properties) rather than just valid and invalid results
     multi = True 
     # Whether the unlabelled data should be deleted 
-    delete_datasets = True
+    delete_datasets = False
     # Whether the model should be saved as a .pkl file
     save = False
 
@@ -53,7 +54,7 @@ def main():
     dataset_generator.generate_datasets(num_validation_values, ground_truths_per_dataset)
 
     # Sets up, runs, and (optionally) saves the chosen model:
-    model = ModelBuilder(output_file_path, framework, field_key, sensors, dims, errors, multi, delete_datasets, save)
+    model = ModelBuilder(output_file_path, framework, sensor_type, sensors, dims, errors, multi, delete_datasets, save)
     model.run_model()
     
 if __name__ == "__main__":
@@ -66,6 +67,7 @@ if __name__ == "__main__":
     # Allow user control of hyperparameters
     # Fully configureable example (decoupled steps)
     # Stretch goals: 
+        # Make tkinter interface optional
         # More complex input files, e.g. 3D monoblock
         # Accepting multiple simultaneous perturbations - generate datasets class
         # Allowing user to define sensor positions - labelled dataset function
