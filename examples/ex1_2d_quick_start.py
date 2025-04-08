@@ -17,11 +17,27 @@ def main():
     ground_truths_per_dataset = 3
 
     # Modelling parameters - change to desired values:
-    # Modelling framework:
-        # rf = Random Forest
-        # svm = Support Vector Machine
-        # dt = Decision Tree
-    framework = "rf"
+    # Classifier framework
+    # For a comprehensive list of available classifiers, please refer
+    # to the relevant documentation:
+    # https://scikit-learn.org/stable/supervised_learning.html
+    classifier_framework = "sklearn.ensemble.RandomForestClassifier"
+    # Classifier parameters
+    # Note that not all parameters are required for every classifier. 
+    # Any irrelevant or unsupported parameters for the selected model 
+    # will be automatically ignored during model creation. 
+    # For a comprehensive list of available parameters for each classifier, 
+    # please refer to the relevant documentation:
+    # https://scikit-learn.org/stable/modules/classes.html#classifier
+    classifier_params = {
+        "n_estimators": 100,
+        "random_state": 42,
+        "kernel": "linear",
+        "C": 0.025,
+        "max_depth": 5
+    }
+    # The field being analysed as used by your input script 
+    field_key = "temperature"
     # Analysis sensor type 
     # (thermocouples for temperature, disp_sensors for displacement, or strain_gauges for strain)
     sensor_type = "thermocouples"
@@ -54,13 +70,15 @@ def main():
     dataset_generator.generate_datasets(num_validation_values, ground_truths_per_dataset)
 
     # Sets up, runs, and (optionally) saves the chosen model:
-    model = ModelBuilder(output_file_path, framework, sensor_type, sensors, dims, errors, multi, delete_datasets, save)
+    model = ModelBuilder(output_file_path, classifier_framework, classifier_params, field_key,
+                         sensor_type, sensors, dims, errors, multi, delete_datasets, save)
     model.run_model()
     
 if __name__ == "__main__":
     main()
 
 # Next steps:  
+    # Docstrings + error handling for recent changes
     # Test suite using PyTest
     # Optimise usability and structure of classes/dicts/input files, etc
     # Improve classifiers

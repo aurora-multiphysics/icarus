@@ -5,6 +5,8 @@ from icarus import (DatasetGenerator,
                     MooseSetup,
                     UserInterface)
 
+def generate_datasets():
+
 def main():
     """main: runs all of the other functions.
     """
@@ -19,13 +21,30 @@ def main():
     ground_truths_per_dataset = 3
 
     # Modelling parameters - change to desired values:
-    # Modelling framework:
-        # rf = Random Forest
-        # svm = Support Vector Machine
-        # dt = Decision Tree
-    framework = "rf"
-    # Analysis field (temperature, displacement, or strain)
+    # Classifier framework
+    # For a comprehensive list of available classifiers, please refer
+    # to the relevant documentation:
+    # https://scikit-learn.org/stable/supervised_learning.html
+    classifier_framework = "sklearn.ensemble.RandomForestClassifier"
+    # Classifier parameters
+    # Note that not all parameters are required for every classifier. 
+    # Any irrelevant or unsupported parameters for the selected model 
+    # will be automatically ignored during model creation. 
+    # For a comprehensive list of available parameters for each classifier, 
+    # please refer to the relevant documentation:
+    # https://scikit-learn.org/stable/modules/classes.html#classifier
+    classifier_params = {
+        "n_estimators": 100,
+        "random_state": 42,
+        "kernel": "linear",
+        "C": 0.025,
+        "max_depth": 5
+    }
+    # The field being analysed as used by your input script 
     field_key = "temperature"
+    # Analysis sensor type 
+    # (thermocouples for temperature, disp_sensors for displacement, or strain_gauges for strain)
+    sensor_type = "thermocouples"
     # Sensor arrangement (x_sensors, y_sensors, z_sensors)
     sensors = (3,2,1)
     # Number of spatial dimensions being used 
@@ -79,7 +98,8 @@ def main():
         dataset_generator.generate_ground_truths(path, num_ground_truths)
 
     # Sets up, runs, and (optionally) saves the chosen model:
-    model = ModelBuilder(output_file_path, framework, field_key, sensors, dims, errors, multi, delete_datasets, save)
+    model = ModelBuilder(output_file_path, classifier_framework, classifier_params, field_key, 
+                         sensor_type, sensors, dims, errors, multi, delete_datasets, save)
     
     # Generates labelled training and validation datasets 
     training_dataset = model.generate_labelled_dataset(perturbed_path)

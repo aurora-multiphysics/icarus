@@ -1,14 +1,12 @@
 import numpy as np
 import pyvale
 from pyvale import SensorArrayPoint
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.svm import SVC
-from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 import joblib
 from mooseherder import ExodusReader, SimData
 from pathlib import Path
 import shutil
+from icarus.modelframework import SKLearnClassifier
 
 class ModelBuilder:
     """Used to create a sensor array, generate the labelled datasets the sensor array and the 
@@ -17,19 +15,23 @@ class ModelBuilder:
         Outputs the pertinent information to the user, and allows the user to save the model,
         and to delete unlabelled datasets
     """
-    def __init__(self, output_file_path: str, framework: str, sensor_type: str="thermocouples", 
-                 sensors: list=[3,2,1], dims: int=2, errors: bool=False, multi: bool=False,
-                 delete_datasets: bool=False, save: bool=False) -> None:
+    def __init__(self, output_file_path: str, classifier_framework: str, classifier_params: dict, 
+                 field_key: str, sensor_type: str, sensors: list=[3,2,1], dims: int=2, errors: bool=False,
+                 multi: bool=False,delete_datasets: bool=False, save: bool=False) -> None:
         """__init__
 
         Parameters
         ----------
         output_file_path : str
             Path to the location that all outputs should be saved.
-        framework : str
+        classifier_framework : str
             The type of ML model to use (RandomForest, SVM, etc.)
-        field_key : str, optional
-            The field being analysed in the experiment/simulation, by default "temperature"
+        classifier_params : dict
+            The hyperparameters for the classifier.
+        field_key : str
+            The field key used for the analysis field in the input file.
+        sensor_type : str, optional
+            The sensor type used to analyse the field in the experiment/simulation.
         sensors : list, optional
             The number of sensors to in each dimension (x,y,z), by default [3,2,1] for a 2d
             simulation.
@@ -51,7 +53,7 @@ class ModelBuilder:
         FileNotFoundError
             If any of the required output file paths don't exist.
         ValueError
-            If any of framework, field_key, sensors, dims, errors, multi, delete_datasets, or save
+            If any of sensor_type, sensors, dims, errors, multi, delete_datasets, or save
             are unacceptable.
         """
         if not Path(output_file_path).exists() or \
@@ -60,9 +62,10 @@ class ModelBuilder:
             raise FileNotFoundError(f"At least one required output file path not found. Exiting.")
         self.output_file_path = output_file_path 
 
-        if framework not in ["rf", "svm", "dt"]:
-            raise ValueError(f"Invalid framework {framework}. Exiting.")
-        self.framework = framework
+        self.classifier_framework = classifier_framework
+        self.classifier_params = classifier_params
+
+        self.field_key = field_key
 
         if sensor_type not in ["thermocouples", "disp_sensors", "strain_gauges"]:
             raise ValueError(f"Unacceptable sensor type {sensor_type}. Exiting.")
@@ -142,8 +145,7 @@ class ModelBuilder:
         func_name = f"{self.sensor_type}_{errors_map[self.errors]}"
         factory = pyvale.SensorArrayFactory
         func = getattr(factory, func_name)
-
-        sens_array = func(sim_data, sens_data, self.sensor_type, spat_dims=self.dims)
+        sens_array = func(sim_data, sens_data, self.field_key, spat_dims=self.dims)
         
         return sens_array
     
@@ -223,7 +225,7 @@ class ModelBuilder:
     
 
     def classifier_model(self, X_train: list[float], y_train: list[float]) \
-           -> RandomForestClassifier | SVC | DecisionTreeClassifier:
+           -> SKLearnClassifier:
         """classifier_model: generates a classifier of the selected framework for the
             given data.
 
@@ -236,22 +238,17 @@ class ModelBuilder:
 
         Returns
         -------
-        classifier : RandomForestClassifier | SVC | DecisionTreeClassifier
+        classifier : SKLearnClassifier
             The classifier itself.
         """
-        classifiers = {
-            "rf": RandomForestClassifier(n_estimators=100, random_state=42),
-            "svm": SVC(kernel="linear", C=0.025, random_state=42),
-            "dt": DecisionTreeClassifier(max_depth=5, random_state=42)
-        }
-
-        for classifier_framework, classifier_function in classifiers.items():
-            if self.framework == classifier_framework:
-                classifier = classifier_function
-
+        classifier = SKLearnClassifier(self.classifier_framework, self.classifier_params)
         classifier.fit(X_train, y_train)
 
-        return classifier
+        ignored = classifier.ignored_params()
+        if ignored:
+            print(f"Ignored parameters for {self.classifier_framework}: {ignored}")
+
+        return classifier.get_model()
     
 
     def output_model_metrics(self, y_val: list[float], y_pred: list[float]) -> None:
@@ -272,7 +269,7 @@ class ModelBuilder:
         print(f"Validation Accuracy: {val_accuracy * 100:.2f}%")
 
     
-    def save_model(self, classifier: RandomForestClassifier | SVC | DecisionTreeClassifier) -> None:
+    def save_model(self, classifier: SKLearnClassifier) -> None:
         """save_model: used to save the model as a .pkl file
 
         Parameters
@@ -283,7 +280,7 @@ class ModelBuilder:
         joblib.dump(classifier, str(self.output_file_path)+str(self.framework)+'_model.pkl')
 
 
-    def run_model(self) -> RandomForestClassifier | SVC | DecisionTreeClassifier:
+    def run_model(self) -> SKLearnClassifier:
         """run_model: Convenience function to run all aspects of the ModelBuilder class.
         
         Returns 
