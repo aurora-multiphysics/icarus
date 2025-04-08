@@ -7,15 +7,6 @@ from icarus import (DatasetGenerator,
 
 def main():
     """main: runs all of the other functions.
-
-    Raises
-    ------
-    FileNotFoundError
-        If the file submission window is closed (instead of submitting file paths)
-    ValueError
-        If the input file is improperly formatted and no parameters are found as expected
-    ValueError
-        If the parameter submission window is closed (instead of submitting parameter data)
     """
     # Required parameters - change to desired values
     # Input and output paths
@@ -62,21 +53,26 @@ def main():
     # Initialise dataset generator and generate perturbed, validation and ground truths datasets
     dataset_generator = DatasetGenerator(moose_runner, moose_modifier, parameters, output_file_path, num_para_runs)
 
+    # Sets up the paths to where the outputted unlabelled datasets will be saved
     perturbed_path, perturbed_vals = Path(str(output_file_path+"perturbed_datasets/")), None
     validation_path, validation_vals = Path(str(output_file_path+"validation_datasets/")), None
     
     paths = {perturbed_path: perturbed_vals, validation_path: validation_vals}
 
+    # Generates the unlabelled datasets
     for name, param_class, values, n_valid in zip(dataset_generator.param_names, dataset_generator.param_classes, \
                                                   dataset_generator.param_values, num_validation_values):
+        # Generates valid validation values for each parameter 
         validation_values = dataset_generator.generate_validation_values(values, n_valid)
         
         paths[perturbed_path] = values
         paths[validation_path] = validation_values
 
+        # Generates perturbed and validation datasets based on chosen values 
         for path, vals in paths.items():
             dataset_generator.generate_dataset(path, name, param_class, vals)
 
+    # Generates the ground truth datasets based on the ratio of perturbed:ground truth specified
     for path in paths.keys():
         num_datasets = sum(1 for d in path.iterdir() if d.is_dir())
         num_ground_truths = math.ceil(num_datasets/ground_truths_per_dataset)
@@ -85,19 +81,25 @@ def main():
     # Sets up, runs, and (optionally) saves the chosen model:
     model = ModelBuilder(output_file_path, framework, field_key, sensors, dims, errors, multi, delete_datasets, save)
     
+    # Generates labelled training and validation datasets 
     training_dataset = model.generate_labelled_dataset(perturbed_path)
     validation_dataset = model.generate_labelled_dataset(validation_path)
 
+    # Deletes unlabelled datasets (and saves labelled) if specified
     if delete_datasets:
         model.delete_data(perturbed_path, training_dataset, validation_path, validation_dataset)
     
+    # Splits data according to modelling requirements
     X_train, y_train, X_val, y_val = training_dataset[:, :-1], training_dataset[:, -1], validation_dataset[:, :-1], validation_dataset[:, -1]
 
+    # Builds the specified model and predicts the labels of the validation datasets
     classifier = model.classifier_model(X_train, y_train)
     y_pred = classifier.predict(X_val)
     
+    # Outputs model metrics 
     model.output_model_metrics(y_val, y_pred)
 
+    # Saves model if specified
     if save:
         model.save_model(classifier)
     
