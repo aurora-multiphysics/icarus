@@ -22,7 +22,6 @@ class MooseSetup:
         """
         self.input_file_path = input_file_path
         self.n_tasks, self.n_threads = n_tasks, n_threads
-        self.moose_runner, self.moose_modifier = self.setup_moose_runner()
 
 
     def setup_moose_runner(self) -> tuple[MooseRunner, InputModifier]:
@@ -48,13 +47,10 @@ class MooseSetup:
             #comment character#* and end #comment character#**, e.g. #_* and #** for
             moose.
         """
-        if self.input_file_path[-2:] != ".i":
-                raise FileNotFoundError(f"Unacceptable input file path.")
-        
-        try:
-            moose_input = Path(self.input_file_path)
-        except FileNotFoundError:
+        if self.input_file_path[-2:] != ".i" or not Path(self.input_file_path).exists():
             raise FileNotFoundError(f"Unacceptable input file path.")
+        
+        moose_input = Path(self.input_file_path)
 
         moose_modifier = InputModifier(moose_input, '#', '')
         if len(moose_modifier.get_vars()) == 0:
