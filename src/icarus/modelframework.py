@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import sklearn
 import inspect
 
+
 def get_classifier_class(classifier_framework: str):
     try:
         return eval(classifier_framework)

@@ -5,8 +5,6 @@ from icarus import (DatasetGenerator,
                     MooseSetup,
                     UserInterface)
 
-def generate_datasets():
-
 def main():
     """main: runs all of the other functions.
     """

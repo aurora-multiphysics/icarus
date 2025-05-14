@@ -78,11 +78,10 @@ if __name__ == "__main__":
     main()
 
 # Next steps:  
-    # Docstrings + error handling for recent changes
+    # Docstrings + type hinting for recent changes
     # Test suite using PyTest
     # Optimise usability and structure of classes/dicts/input files, etc
     # Improve classifiers
-    # Allow user control of hyperparameters
     # Fully configureable example (decoupled steps)
     # Stretch goals: 
         # Make tkinter interface optional
