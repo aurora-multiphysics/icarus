@@ -1,5 +1,10 @@
 from pathlib import Path
 import math
+import sklearn
+import inspect
+import sys
+import joblib
+import numpy as np
 from icarus import (DatasetGenerator,
                     ModelBuilder,
                     MooseSetup,
@@ -11,7 +16,7 @@ def main():
     # Required parameters - change to desired values
     # Input and output paths
     input_file_path = "scripts/moose/plate_2d_thermal.i"
-    output_file_path = "examples/example_outputs/ex2_outputs/" 
+    output_file_path = "examples/example_outputs/ex1_outputs/" 
     # Parallelisation options
     n_tasks, n_threads = 1, 2
     num_para_runs = 2
@@ -23,7 +28,7 @@ def main():
     # For a comprehensive list of available classifiers, please refer
     # to the relevant documentation:
     # https://scikit-learn.org/stable/supervised_learning.html
-    classifier_framework = "sklearn.ensemble.RandomForestClassifier"
+    classifier_framework = sklearn.ensemble.RandomForestClassifier
     # Classifier parameters
     # Note that not all parameters are required for every classifier. 
     # Any irrelevant or unsupported parameters for the selected model 
@@ -38,6 +43,17 @@ def main():
         "C": 0.025,
         "max_depth": 5
     }
+    # Filter parameters according to chosen classifier 
+    sig = inspect.signature(classifier_framework.__init__)
+    valid_params = set(sig.parameters.keys()) - {"self"}
+    filtered_params = {k: v for k, v in classifier_params.items() if k in valid_params}
+    # Make sure there are some filtered parameters to be used
+    if len(filtered_params) == 0:
+        print(f"Invalid parameters for {classifier_framework}: {classifier_params}")
+        sys.exit()
+    # Print ignored parameters 
+    ignored = set(classifier_params) - set(filtered_params)
+    print(f"Ignored parameters for {classifier_framework}: {ignored}")
     # The field being analysed as used by your input script 
     field_key = "temperature"
     # Analysis sensor type 
@@ -55,8 +71,9 @@ def main():
     multi = True 
     # Whether the unlabelled data should be deleted 
     delete_datasets = True
-    # Whether the model should be saved as a .pkl file
+    # Whether the model should be saved as a .pkl file and what it should be called
     save = False
+    model_name = "ex1_2d_model"
 
     # Setup MOOSE aspects of Icarus
     moose_setup = MooseSetup(input_file_path, n_tasks=n_tasks, n_threads=n_threads)
@@ -96,22 +113,25 @@ def main():
         dataset_generator.generate_ground_truths(path, num_ground_truths)
 
     # Sets up, runs, and (optionally) saves the chosen model:
-    model = ModelBuilder(output_file_path, classifier_framework, classifier_params, field_key, 
-                         sensor_type, sensors, dims, errors, multi, delete_datasets, save)
+    model = ModelBuilder(output_file_path, field_key, sensor_type, sensors, dims, errors, multi, delete_datasets)
     
-    # Generates labelled training and validation datasets 
+    # Generates labelled training and validation datasets and saves them
+    header = ",".join([f"T{i}" for i in range(1, sensors[0]*sensors[1]*sensors[2]+1)] + ["Label"])
     training_dataset = model.generate_labelled_dataset(perturbed_path)
+    np.savetxt(perturbed_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
     validation_dataset = model.generate_labelled_dataset(validation_path)
+    np.savetxt(validation_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
 
-    # Deletes unlabelled datasets (and saves labelled) if specified
+    # Deletes unlabelled datasets if specified
     if delete_datasets:
-        model.delete_data(perturbed_path, training_dataset, validation_path, validation_dataset)
+        model.delete_data(perturbed_path, validation_path)
     
     # Splits data according to modelling requirements
     X_train, y_train, X_val, y_val = training_dataset[:, :-1], training_dataset[:, -1], validation_dataset[:, :-1], validation_dataset[:, -1]
 
     # Builds the specified model and predicts the labels of the validation datasets
-    classifier = model.classifier_model(X_train, y_train)
+    classifier = classifier_framework(**filtered_params)
+    classifier.fit(X_train, y_train)
     y_pred = classifier.predict(X_val)
     
     # Outputs model metrics 
@@ -119,7 +139,16 @@ def main():
 
     # Saves model if specified
     if save:
-        model.save_model(classifier)
+        joblib.dump(classifier, str(output_file_path)+model_name+'_model.pkl')
     
 if __name__ == "__main__":
     main()
+
+# Next steps:
+    # Continue building test suite
+    # Improve classifiers
+    # Make tkinter interface optional
+    # Stretch goals: 
+        # More complex input files, e.g. 3D monoblock
+        # Accepting multiple simultaneous perturbations - generate datasets class
+        # Allowing user to define sensor positions - labelled dataset function

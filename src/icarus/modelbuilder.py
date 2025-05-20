@@ -1,12 +1,9 @@
 import numpy as np
 import pyvale
-from pyvale import SensorArrayPoint
 from sklearn.metrics import accuracy_score
-import joblib
 from mooseherder import ExodusReader, SimData
 from pathlib import Path
 import shutil
-from icarus.modelframework import SKLearnClassifier
 
 class ModelBuilder:
     """Used to create a sensor array, generate the labelled datasets the sensor array and the 
@@ -15,19 +12,14 @@ class ModelBuilder:
         Outputs the pertinent information to the user, and allows the user to save the model,
         and to delete unlabelled datasets
     """
-    def __init__(self, output_file_path: str, classifier_framework: str, classifier_params: dict, 
-                 field_key: str, sensor_type: str, sensors: list=[3,2,1], dims: int=2, errors: bool=False,
-                 multi: bool=False,delete_datasets: bool=False, save: bool=False) -> None:
+    def __init__(self, output_file_path: str, field_key: str, sensor_type: str, sensors: list=[3,2,1], 
+                 dims: int=2, errors: bool=False, multi: bool=False,delete_datasets: bool=False) -> None:
         """__init__
 
         Parameters
         ----------
         output_file_path : str
             Path to the location that all outputs should be saved.
-        classifier_framework : str
-            The type of ML model to use (RandomForest, SVM, etc.)
-        classifier_params : dict
-            The hyperparameters for the classifier.
         field_key : str
             The field key used for the analysis field in the input file.
         sensor_type : str, optional
@@ -45,8 +37,6 @@ class ModelBuilder:
             False (meaning use a binary classifier).
         delete_datasets : bool
             Allows the user to determine whether or not to delete the unlabelled datasets.
-        save : bool
-            Allows the user to determine whether or not to save the model.
 
         Raises
         ----------
@@ -60,10 +50,7 @@ class ModelBuilder:
             not Path(str(output_file_path+"perturbed_datasets/")).exists() or \
             not Path(str(output_file_path+"validation_datasets/")).exists():
             raise FileNotFoundError(f"At least one required output file path not found. Exiting.")
-        self.output_file_path = output_file_path 
-
-        self.classifier_framework = classifier_framework
-        self.classifier_params = classifier_params
+        self.output_file_path = output_file_path
 
         self.field_key = field_key
 
@@ -94,14 +81,10 @@ class ModelBuilder:
             raise ValueError(f"Delete datasets must be either True or False, not {delete_datasets}. Exiting.")
         self.delete_datasets = delete_datasets
 
-        if save not in [True, False]:
-            raise ValueError(f"Save must be either True or False, not {save}. Exiting.")
-        self.save = save
-
         self.labelled_dataset_cols = (sensors[0]*sensors[1]*sensors[2])+1
 
 
-    def sensor_array(self, sim_data: SimData) -> SensorArrayPoint:
+    def sensor_array(self, sim_data: SimData) -> pyvale.SensorArrayPoint:
         """sensor_array: used to generate the array of sensors used to generate the labelled
             datasets required for training the model. 
 
@@ -200,56 +183,21 @@ class ModelBuilder:
             return labelled_dataset
     
 
-    def delete_data(self, perturbed_path: Path, training_dataset: list[list[list[float],int]], 
-                    validation_path: Path, validation_dataset: list[list[list[float],int]]) -> None:
+    def delete_data(self, perturbed_path: Path, validation_path: Path) -> None:
         """delete_data: deletes the unlabelled datasets and just saves the labelled dataset
 
         Parameters
         ----------
         perturbed_path : Path
             Path to the save location for the perturbed datasets.
-        training_dataset : list[list[list[float],int]]
-            The labelled training dataset.
         validation_path : Path
             Path to the save location for the validation datasets.
-        validation_dataset : list[list[list[float],int]]
-            The labelled validation dataset.
         """
-        paths = {perturbed_path: training_dataset, validation_path: validation_dataset}
-        for path in paths:
+        for path in [perturbed_path, validation_path]:
             for folder in path.iterdir():
                 if folder.is_dir():
                     shutil.rmtree(folder)
-            dataset = paths[path]
-            np.savetxt(path/"labelled_dataset.txt", dataset, fmt="%d", delimiter=",")
-    
 
-    def classifier_model(self, X_train: list[float], y_train: list[float]) \
-           -> SKLearnClassifier:
-        """classifier_model: generates a classifier of the selected framework for the
-            given data.
-
-        Parameters
-        ----------
-        X_train : list[float]
-            The training data from the labelled training dataset.
-        y_train : list[float]
-            The labels for each row of the training dataset.
-
-        Returns
-        -------
-        classifier : SKLearnClassifier
-            The classifier itself.
-        """
-        classifier = SKLearnClassifier(self.classifier_framework, self.classifier_params)
-        classifier.fit(X_train, y_train)
-
-        ignored = classifier.ignored_params()
-        if ignored:
-            print(f"Ignored parameters for {self.classifier_framework}: {ignored}")
-
-        return classifier.get_model()
-    
 
     def output_model_metrics(self, y_val: list[float], y_pred: list[float]) -> None:
         """output_model_metrics: prints the actual + predicted labels, as well as the final
@@ -267,43 +215,3 @@ class ModelBuilder:
 
         val_accuracy = accuracy_score(y_val, y_pred)
         print(f"Validation Accuracy: {val_accuracy * 100:.2f}%")
-
-    
-    def save_model(self, classifier: SKLearnClassifier) -> None:
-        """save_model: used to save the model as a .pkl file
-
-        Parameters
-        ----------
-        classifier : RandomForestClassifier
-            The classifier model generated to be saved.
-        """
-        joblib.dump(classifier, str(self.output_file_path)+str(self.framework)+'_model.pkl')
-
-
-    def run_model(self) -> SKLearnClassifier:
-        """run_model: Convenience function to run all aspects of the ModelBuilder class.
-        
-        Returns 
-        ----------
-        classifier : RandomForestClassifier 
-            The classifier model itself.
-        """
-        perturbed_path, validation_path = Path(self.output_file_path+"perturbed_datasets/"), Path(self.output_file_path+"validation_datasets/")
-        
-        training_dataset = self.generate_labelled_dataset(perturbed_path)
-        validation_dataset = self.generate_labelled_dataset(validation_path)
-
-        if self.delete_datasets:
-            self.delete_data(perturbed_path, training_dataset, validation_path, validation_dataset)
-        
-        X_train, y_train, X_val, y_val = training_dataset[:, :-1], training_dataset[:, -1], validation_dataset[:, :-1], validation_dataset[:, -1]
-
-        classifier = self.classifier_model(X_train, y_train)
-        y_pred = classifier.predict(X_val)
-        
-        self.output_model_metrics(y_val, y_pred)
-
-        if self.save:
-            self.save_model(classifier)
-
-        return classifier
