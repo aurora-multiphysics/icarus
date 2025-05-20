@@ -116,7 +116,7 @@ def main():
     model = ModelBuilder(output_file_path, field_key, sensor_type, sensors, dims, errors, multi, delete_datasets)
     
     # Generates labelled training and validation datasets and saves them
-    header = ",".join([f"T{i}" for i in range(1, sensors[0]*sensors[1]*sensors[2]+1)] + ["Label"])
+    header = ",".join([f"Sensor {i} reading" for i in range(1, sensors[0]*sensors[1]*sensors[2]+1)] + ["Label"])
     training_dataset = model.generate_labelled_dataset(perturbed_path)
     np.savetxt(perturbed_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
     validation_dataset = model.generate_labelled_dataset(validation_path)
