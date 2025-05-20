@@ -16,7 +16,20 @@ def main():
     # Required parameters - change to desired values
     # Input and output paths
     input_file_path = "scripts/moose/plate_2d_thermal.i"
-    output_file_path = "examples/example_outputs/ex1_outputs/" 
+    output_file_path = "examples/example_outputs/ex1_outputs/"  
+    # Perturbation parameters, leave blank (ie parameters = {}) to use auto-generated
+    # tkinter interface
+    # Format as {param_name, [param_class, [param_values]]}
+    # where param_name is the name of the parameter from the input file
+    # param_class is the classification of the parameter
+        # geom - geometry, bc - boundary condtion, mat_prop - material property
+    # and param_values is a list of values the parameter should take on
+    parameters = {
+        "max_temp": ["bc", [750, 1000, 1250, 1500, 1750]],
+        "thermal_conductivity": ["mat_prop", [55, 65, 76, 85, 95]]
+    }
+    # Number of validation values to use for each parameter, respectively
+    num_validation_values = [3, 3]
     # Parallelisation options
     n_tasks, n_threads = 1, 2
     num_para_runs = 2
@@ -79,10 +92,27 @@ def main():
     moose_setup = MooseSetup(input_file_path, n_tasks=n_tasks, n_threads=n_threads)
     moose_runner, moose_modifier = moose_setup.setup_moose_runner()
 
-    # Accesses the available parameters and allow user to select which are perturbed, what
-    # values they should take, and how many validation values to use for each
+    # Accesses the available parameters 
     found_vars = moose_modifier.get_vars()
-    num_validation_values, parameters = UserInterface().accept_parameters(found_vars)
+    if len(parameters) == 0:
+        # If none have been manually specified, allow user to select which parameters are perturbed, 
+        # what values they should take, and how many validation values to use for each
+        num_validation_values, parameters = UserInterface().accept_parameters(found_vars)
+    else:
+        # Ensure parameters dictionary and num_validation_values list are valid 
+        if len(num_validation_values) != len(parameters) or 0 in num_validation_values:
+            print("Invalidation number of validation values specified")
+            sys.exit()
+        for param_name, param_data in parameters.items():
+            if param_name not in found_vars.keys():
+                print(f"Parameter {param_name} not found in input file. Exiting.")
+                sys.exit() 
+            if param_data[0].lower() not in ["geom", "bc", "mat_prop"]:
+                print(f"Invalid parameter class. Exiting.")
+                sys.exit()
+            if len(param_data[1]) < 1:
+                print("Insufficient parameter values. Exiting.")
+                sys.exit()
     
     # Initialise dataset generator and generate perturbed, validation and ground truths datasets
     dataset_generator = DatasetGenerator(moose_runner, moose_modifier, parameters, output_file_path, num_para_runs)
@@ -147,7 +177,6 @@ if __name__ == "__main__":
 # Next steps:
     # Continue building test suite
     # Improve classifiers
-    # Make tkinter interface optional
     # Stretch goals: 
         # More complex input files, e.g. 3D monoblock
         # Accepting multiple simultaneous perturbations - generate datasets class
