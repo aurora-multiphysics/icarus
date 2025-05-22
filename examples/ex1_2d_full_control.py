@@ -83,7 +83,7 @@ def main():
     # (geometry, BCs, material properties) rather than just valid and invalid results
     multi = True 
     # Whether the unlabelled data should be deleted 
-    delete_datasets = True
+    delete_datasets = False
     # Whether the model should be saved as a .pkl file and what it should be called
     save = False
     model_name = "ex1_2d_model"
@@ -148,9 +148,7 @@ def main():
     # Generates labelled training and validation datasets and saves them
     header = ",".join([f"Sensor {i} reading" for i in range(1, sensors[0]*sensors[1]*sensors[2]+1)] + ["Label"])
     training_dataset = model.generate_labelled_dataset(perturbed_path)
-    np.savetxt(perturbed_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
     validation_dataset = model.generate_labelled_dataset(validation_path)
-    np.savetxt(validation_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
 
     # Deletes unlabelled datasets if specified
     if delete_datasets:
@@ -170,6 +168,8 @@ def main():
     # Saves model if specified
     if save:
         joblib.dump(classifier, str(output_file_path)+model_name+'_model.pkl')
+        np.savetxt(perturbed_path/"labelled_dataset.txt", training_dataset, fmt="%d", delimiter=",", header=header, comments='')
+        np.savetxt(validation_path/"labelled_dataset.txt", validation_dataset, fmt="%d", delimiter=",", header=header, comments='')
     
 if __name__ == "__main__":
     main()

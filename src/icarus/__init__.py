@@ -10,5 +10,5 @@ from icarus.userinterface import UserInterface
 
 __all__ = ["moosesetup",
            "datasetgenerator",
-            "modelbuilder",
-            "userinterface"]
+           "modelbuilder",
+           "userinterface"]

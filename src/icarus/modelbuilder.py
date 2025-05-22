@@ -1,5 +1,4 @@
 import numpy as np
-import pyvale
 from sklearn.metrics import accuracy_score
 from mooseherder import ExodusReader, SimData
 from pathlib import Path
@@ -46,6 +45,9 @@ class ModelBuilder:
             If any of sensor_type, sensors, dims, errors, multi, delete_datasets, or save
             are unacceptable.
         """
+        import pyvale
+        self.pyvale = pyvale
+
         if not Path(output_file_path).exists() or \
             not Path(str(output_file_path+"perturbed_datasets/")).exists() or \
             not Path(str(output_file_path+"validation_datasets/")).exists():
@@ -84,9 +86,9 @@ class ModelBuilder:
         self.labelled_dataset_cols = (sensors[0]*sensors[1]*sensors[2])+1
 
 
-    def sensor_array(self, sim_data: SimData) -> pyvale.SensorArrayPoint:
+    def sensor_array(self, sim_data: SimData) -> "pyvale.SensorArrayPoint":
         """sensor_array: used to generate the array of sensors used to generate the labelled
-            datasets required for training the model. 
+            datasets required for training the model.
 
         Parameters
         ----------
@@ -117,8 +119,8 @@ class ModelBuilder:
         x_lims = (xmin,xmax)
         y_lims = (ymin,ymax)
         z_lims = (zmin,zmax)
-        sens_pos = pyvale.create_sensor_pos_array(n_sens,x_lims,y_lims,z_lims)
-        sens_data = pyvale.SensorData(positions=sens_pos)
+        sens_pos = self.pyvale.create_sensor_pos_array(n_sens,x_lims,y_lims,z_lims)
+        sens_data = self.pyvale.SensorData(positions=sens_pos)
 
         errors_map = {
             True: "basic_errs",
@@ -126,9 +128,9 @@ class ModelBuilder:
         }
 
         func_name = f"{self.sensor_type}_{errors_map[self.errors]}"
-        factory = pyvale.SensorArrayFactory
+        factory = self.pyvale.SensorArrayFactory
         func = getattr(factory, func_name)
-        sens_array = func(sim_data, sens_data, self.field_key, spat_dims=self.dims)
+        sens_array = func(sim_data, sens_data, elem_dims=self.dims, field_name=self.field_key)
         
         return sens_array
     
