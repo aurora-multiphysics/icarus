@@ -48,7 +48,7 @@ class DatasetGenerator:
         self.moose_modifier = moose_modifier
         self.num_para_runs = num_para_runs
 
-        if parameters == None or len(parameters) == 0:            
+        if not parameters:            
             raise ValueError(f"Unacceptable parameters. Exiting.")
         
         self.parameters = parameters
