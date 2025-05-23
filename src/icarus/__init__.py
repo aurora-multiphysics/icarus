@@ -8,7 +8,7 @@ from icarus.datasetgenerator import DatasetGenerator
 from icarus.modelbuilder import ModelBuilder
 from icarus.userinterface import UserInterface
 
-__all__ = ["moosesetup",
-           "datasetgenerator",
-           "modelbuilder",
-           "userinterface"]
+__all__ = ["MooseSetup",
+           "DatasetGenerator",
+           "ModelBuilder",
+           "UserInterface"]
