@@ -2,9 +2,7 @@ from tkinter import Tk, Label, Entry, Button, Frame, Checkbutton, BooleanVar, St
 from pathlib import Path
 
 class UserInterface:
-    """Provides a user interface using tkinter to allow the user to control aspects of the modelling process,
-        including selecting parameters to be perturbed and defining their values and how many validation datasets
-        to generate for each parameter.
+    """User interface enabling users to control aspects of the modelling process.
     """
     def __init__(self):
         pass
