@@ -1,3 +1,8 @@
+#-------------------------------------------------------------------------
+# This is a MOOSE input file to simulate the temperature field of a 2D plate.
+# (c) Copyright UKAEA 2024.
+#-------------------------------------------------------------------------
+
 #_* Variables Block
 max_temp = 500
 init_temp = 20

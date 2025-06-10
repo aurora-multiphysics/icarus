@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------
-# monoblock_transient_thermal.i
+# This is a MOOSE input file to simulate the temperature field of a 3D monoblock.
 # Author: Luke Humphrey, Lloyd Fletcher
 # (c) Copyright UKAEA 2024.
 #

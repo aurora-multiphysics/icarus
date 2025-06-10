@@ -161,3 +161,5 @@ cython_debug/
 
 # Icarus-specific files
 examples/example_outputs
+src/icarus.egg-info/PKG-INFO
+.vscode
