@@ -163,3 +163,4 @@ cython_debug/
 examples/example_outputs
 src/icarus.egg-info/PKG-INFO
 .vscode
+moose-config.json
