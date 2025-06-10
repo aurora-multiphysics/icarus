@@ -5,22 +5,28 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "icarus"
 version = "0.1.0"
-description = "A machine learning tool for fusion simulation validation."
+description = "Machine learning for fusion simulation validation"
 authors = [
-  { name = "arjavp-ukaea", email = "arjav.poudel@ukaea.uk" },
+  { name = "iomags2211", email = "isaac.magee@ukaea.uk" },
+  { name = "arjavp-ukaea", email = "arjav.poudel@ukaea.uk"},
   { name = "barisc-ukaea", email = "baris.cavusoglu@ukaea.uk"},
-  { name = "lukethehuman", email = "luke.humphrey@ukaea.uk"},
+  { name = "lukethehuman", email = "luke.humphrey@ukaea.uk"}
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python :: 3", 
+    "License :: GNU LGPL",
     "Operating System :: OS Independent",
 ]
 requires-python = ">=3.11"
 dependencies = [
   "numpy>=1.26.0",
+  "sklearn>=1.6.0",
+  "mooseherder>=0.1.0",
+  "pyvale>=2025.5.3",
+  "joblib>=1.4.0",
+  "pytest>=8.2.0"
 ]
 
 [project.urls]
