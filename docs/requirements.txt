@@ -1,9 +1,0 @@
-numpy
-mooseherder
-pyvale
-scikit-learn
-tkinter
-math
-pathlib
-joblib
-shutil

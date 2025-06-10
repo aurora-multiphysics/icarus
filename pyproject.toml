@@ -8,6 +8,9 @@ version = "0.1.0"
 description = "Machine learning for fusion simulation validation"
 authors = [
   { name = "iomags2211", email = "isaac.magee@ukaea.uk" },
+  { name = "arjavp-ukaea", email = "arjav.poudel@ukaea.uk"},
+  { name = "barisc-ukaea", email = "baris.cavusoglu@ukaea.uk"},
+  { name = "lukethehuman", email = "luke.humphrey@ukaea.uk"}
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -18,7 +21,12 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-  "numpy>=1.26.0"
+  "numpy>=1.26.0",
+  "sklearn>=1.6.0",
+  "mooseherder>=0.1.0",
+  "pyvale>=2025.5.3",
+  "joblib>=1.4.0",
+  "pytest>=8.2.0"
 ]
 
 [project.urls]
